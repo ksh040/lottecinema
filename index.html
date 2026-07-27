@@ -1,20 +1,206 @@
 <!DOCTYPE html>
 <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOTTE CINEMA - WEB MAIN</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="brand" href="#">LOTTE CINEMA</a>
+        <nav class="nav-links" aria-label="주요 메뉴">
+          <a href="#lottepick">lottepick</a>
+          <a href="#mood">mood</a>
+          <a href="#special">special</a>
+          <a href="#goods">굿즈</a>
+          <a href="#event">이벤트</a>
+          <a href="#sns">SNS</a>
+        </nav>
+        <a class="nav-cta" href="#event">예매하기</a>
+      </header>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+      <main>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">PERSONAL RESPONSIVE WEBSITE</p>
+            <h1>영화의 감각을<br />하루의 일상 속으로</h1>
+            <p class="hero-text">
+              롯데시네마의 특별한 무드와 혜택을 한 화면에 담아, 새롭고 세련된
+              감성으로 재구성한 메인 랜딩 페이지입니다.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#special">상세 보기</a>
+              <a class="button secondary" href="#goods">굿즈 둘러보기</a>
+            </div>
+          </div>
 
-<body>
-    <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ul>
-</body>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="visual-card visual-card-large">
+              <div class="ring ring-1"></div>
+              <div class="ring ring-2"></div>
+              <div class="poster-stack">
+                <div class="poster poster-a"></div>
+                <div class="poster poster-b"></div>
+              </div>
+            </div>
+            <div class="visual-card visual-card-small">
+              <span>NOW SHOWING</span>
+              <strong>2026 Summer Edition</strong>
+            </div>
+          </div>
+        </section>
 
+        <section class="section" id="lottepick">
+          <div class="section-heading">
+            <p class="eyebrow">LOTTE PICK</p>
+            <h2>오늘의 추천</h2>
+          </div>
+          <div class="card-grid three-up">
+            <article class="feature-card">
+              <span class="tag">NEW</span>
+              <h3>클래식 무드</h3>
+              <p>영화와 음악, 향의 분위기를 한 번에 느낄 수 있는 추천 콘셉트</p>
+            </article>
+            <article class="feature-card accent">
+              <span class="tag">HOT</span>
+              <h3>시네마 나이트</h3>
+              <p>저녁 시간대의 특별한 관람 경험과 함께하는 프리미엄 이벤트</p>
+            </article>
+            <article class="feature-card">
+              <span class="tag">EVENT</span>
+              <h3>관람 혜택</h3>
+              <p>예매와 굿즈, 스페셜 관람권까지 이어지는 통합 혜택 제안</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section split-section" id="mood">
+          <div class="section-heading">
+            <p class="eyebrow">MOOD</p>
+            <h2>감성 있는 분위기</h2>
+          </div>
+          <div class="mood-layout">
+            <div class="mood-panel large">
+              <div class="panel-glow"></div>
+              <h3>Dark Cinema</h3>
+              <p>어두운 배경과 선명한 포인트 컬러로 영화의 깊이를 강조합니다.</p>
+            </div>
+            <div class="mood-stack">
+              <div class="mood-panel small">
+                <h3>Golden Hour</h3>
+                <p>빛의 온도를 바꾸며 따뜻한 관람 분위기를 연출합니다.</p>
+              </div>
+              <div class="mood-panel small alt">
+                <h3>Retro Frame</h3>
+                <p>레트로한 질감과 타이포그래피를 통해 클래식한 매력을 드러냅니다.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="special">
+          <div class="section-heading">
+            <p class="eyebrow">SPECIAL</p>
+            <h2>스페셜 전시</h2>
+          </div>
+          <div class="special-card">
+            <div class="special-copy">
+              <span class="tag">SPECIAL</span>
+              <h3>시네마의 순간을 특별하게</h3>
+              <p>
+                한정 판권, 특별 상영, 인터랙티브 콘텐츠와 함께 오프라인 경험을
+                디지털로 확장한 기획 전시입니다.
+              </p>
+              <a class="button primary" href="#event">자세히 보기</a>
+            </div>
+            <div class="special-visual" aria-hidden="true"></div>
+          </div>
+        </section>
+
+        <section class="section" id="goods">
+          <div class="section-heading">
+            <p class="eyebrow">굿즈</p>
+            <h2>한정 굿즈</h2>
+          </div>
+          <div class="card-grid four-up">
+            <article class="product-card">
+              <div class="product-badge">COLLECTION</div>
+              <h3>포스터 세트</h3>
+              <p>시네마 분위기를 집 안에 담아낼 수 있는 한정판 포스터</p>
+            </article>
+            <article class="product-card">
+              <div class="product-badge">LIMITED</div>
+              <h3>체인 스티커</h3>
+              <p>영화 속 장면을 모티브로 한 작은 컬렉션 아이템</p>
+            </article>
+            <article class="product-card">
+              <div class="product-badge">NEW</div>
+              <h3>스냅북</h3>
+              <p>다채로운 인쇄와 질감으로 구성된 한정판 스냅북</p>
+            </article>
+            <article class="product-card">
+              <div class="product-badge">PREMIUM</div>
+              <h3>캡슐 케이스</h3>
+              <p>디테일한 마감으로 완성한 프리미엄 액세서리</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section event-section" id="event">
+          <div class="section-heading">
+            <p class="eyebrow">이벤트 혜택</p>
+            <h2>이벤트와 혜택</h2>
+          </div>
+          <div class="event-strip">
+            <article>
+              <h3>회원 전용<br />시네마 패스</h3>
+              <p>매월 업데이트되는 특별한 할인과 혜택</p>
+            </article>
+            <article>
+              <h3>친구 초대<br />추천 쿠폰</h3>
+              <p>초대할 때마다 보너스 혜택을 누릴 수 있는 이벤트</p>
+            </article>
+            <article>
+              <h3>스페셜<br />관람권</h3>
+              <p>프리미엄 관람 경험을 선사하는 한정권</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section sns-section" id="sns">
+          <div class="section-heading">
+            <p class="eyebrow">MAIN CONTENTS - 롯시SNS</p>
+            <h2>소셜 미디어</h2>
+          </div>
+          <div class="sns-grid">
+            <article class="sns-card">
+              <h3>Instagram</h3>
+              <p>실시간으로 공개되는 시네마 무드와 특별한 순간들</p>
+            </article>
+            <article class="sns-card">
+              <h3>YouTube</h3>
+              <p>다음 상영작과 이벤트 정보, 제작 스토리를 확인해보세요</p>
+            </article>
+            <article class="sns-card">
+              <h3>Community</h3>
+              <p>관객들의 반응과 추천 콘텐츠를 한눈에 만나보세요</p>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>LOTTE CINEMA © 2026</p>
+        <a href="#">Back to top</a>
+      </footer>
+    </div>
+  </body>
 </html>
