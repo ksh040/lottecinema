@@ -3,204 +3,470 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LOTTE CINEMA - WEB MAIN</title>
+    <title>LOTTE CINEMA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Nanum+Gothic:wght@400;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="page-shell">
-      <header class="topbar">
-        <a class="brand" href="#">LOTTE CINEMA</a>
-        <nav class="nav-links" aria-label="주요 메뉴">
-          <a href="#lottepick">lottepick</a>
-          <a href="#mood">mood</a>
-          <a href="#special">special</a>
-          <a href="#goods">굿즈</a>
-          <a href="#event">이벤트</a>
-          <a href="#sns">SNS</a>
-        </nav>
-        <a class="nav-cta" href="#event">예매하기</a>
-      </header>
+    <div class="page_background"></div>
+    <header class="site_header">
+      <a class="logo" href="#"><img src="assets/images/logo_lotte_cinema.png" alt="LOTTE CINEMA" width="151" height="24" /></a>
+      <nav class="main_nav" aria-label="메인 메뉴">
+        <a href="#quick_menu">예매</a>
+        <a href="#promo_section">영화</a>
+        <a href="#special_section">영화관</a>
+        <a href="#event_section">이벤트</a>
+        <a href="#event_section">혜택</a>
+        <a href="#goods_section">스토어</a>
+      </nav>
+      <div class="header_actions" aria-label="사용자 메뉴">
+        <button type="button" class="icon_button" aria-label="검색">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.5 4a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13Zm0 0 8.5 8.5" /></svg>
+        </button>
+        <button type="button" class="icon_button" aria-label="로그인">
+          <img src="assets/icons/icon_login.svg" alt="" width="18" height="18" />
+        </button>
+        <button type="button" class="icon_button" aria-label="티켓">
+          <img src="assets/icons/icon_ticket.svg" alt="" width="20" height="20" />
+        </button>
+      </div>
+    </header>
 
-      <main>
-        <section class="hero">
-          <div class="hero-copy">
-            <p class="eyebrow">PERSONAL RESPONSIVE WEBSITE</p>
-            <h1>영화의 감각을<br />하루의 일상 속으로</h1>
-            <p class="hero-text">
-              롯데시네마의 특별한 무드와 혜택을 한 화면에 담아, 새롭고 세련된
-              감성으로 재구성한 메인 랜딩 페이지입니다.
+    <main>
+      <section class="hero_section" id="hero_section">
+        <div class="hero_stage">
+          <div class="hero_copy">
+            <p class="eyebrow" id="hero_eyebrow">실시간 예매 #1</p>
+            <h1 id="hero_title">군체</h1>
+            <p class="hero_subtitle" id="hero_subtitle">새로운 종의 탄생</p>
+            <div class="hero_meta">
+              <span id="hero_age">15세 이상</span>
+              <span id="hero_genre">액션·스릴러</span>
+            </div>
+            <div class="hero_stats" aria-label="영화 정보">
+              <span id="hero_rating">★ 9.5 / 10</span>
+              <span id="hero_percent">예매율 25.2%</span>
+              <span id="hero_audience">42,831명 예매중</span>
+            </div>
+            <div class="hero_actions">
+              <a class="button_primary" href="#quick_menu">예매하기</a>
+              <a class="button_secondary" href="#promo_section">예고편</a>
+            </div>
+          </div>
+          <div class="hero_rank" aria-label="TOP5 순위">
+            <article
+              class="rank_item is_active"
+              tabindex="0"
+              data-number="1"
+              data-title="군체"
+              data-subtitle="새로운 종의 탄생"
+              data-age="15세 이상"
+              data-genre="액션·스릴러"
+              data-rating="9.5"
+              data-percent="25.2%"
+              data-audience="42,831명 예매중"
+              data-bg="assets/images/BgImage.png"
+            >
+              <span class="rank_number">1</span>
+              <img class="rank_poster" src="assets/images/img_box1.png" alt="군체 포스터" />
+              <div>
+                <h2>군체</h2>
+                <p>★ 9.5 · 예매율 25.2%</p>
+              </div>
+            </article>
+            <article
+              class="rank_item"
+              tabindex="0"
+              data-number="2"
+              data-title="마이클"
+              data-subtitle="전설이 된 황제, 그 위대한 시작"
+              data-age="12세 이상"
+              data-genre="드라마"
+              data-rating="9.4"
+              data-percent="15.1%"
+              data-audience="162.8만명 예매중"
+              data-bg="assets/images/Bgimg2.png"
+            >
+              <span class="rank_number">2</span>
+              <img class="rank_poster" src="assets/images/img_box2.png" alt="마이클 포스터" />
+              <div>
+                <h2>마이클</h2>
+                <p>★ 9.4 · 예매율 15.1%</p>
+              </div>
+            </article>
+            <article
+              class="rank_item"
+              tabindex="0"
+              data-number="3"
+              data-title="프로젝트 헤일메리"
+              data-subtitle="종말 위기에 놓인 지구, 인류의 운명을 건 단 하나의 미션"
+              data-age="12세 이상"
+              data-genre="SF"
+              data-rating="9.4"
+              data-percent="13.2%"
+              data-audience="160.2만명 예매중"
+              data-bg="assets/images/Bgimg3.png"
+            >
+              <span class="rank_number">3</span>
+              <img class="rank_poster" src="assets/images/img_box3.png" alt="프로젝트 헤일메리 포스터" />
+              <div>
+                <h2>프로젝트 헤일메리</h2>
+                <p>★ 9.4 · 예매율 13.2%</p>
+              </div>
+            </article>
+            <article
+              class="rank_item"
+              tabindex="0"
+              data-number="4"
+              data-title="악마는 프라다를 입는다 2"
+              data-subtitle="전 세계를 열광시킨 '런웨이' 전설들의 귀환"
+              data-age="12세 이상"
+              data-genre="드라마"
+              data-rating="9.2"
+              data-percent="11.2%"
+              data-audience="159.7만명 예매중"
+              data-bg="assets/images/Bgimg4.png"
+            >
+              <span class="rank_number">4</span>
+              <img class="rank_poster" src="assets/images/img_box4.png" alt="악마는 프라다를 입는다 2 포스터" />
+              <div>
+                <h2>악마는 프라다를 입는다 2</h2>
+                <p>★ 9.2 · 예매율 11.2%</p>
+              </div>
+            </article>
+            <article
+              class="rank_item"
+              tabindex="0"
+              data-number="5"
+              data-title="슈퍼마리오 갤럭시"
+              data-subtitle="새로운 친구, 새로운 미션, 새로운 세계 레벨업 된 모험"
+              data-age="전체 관람가"
+              data-genre="애니메이션"
+              data-rating="9.4"
+              data-percent="8.1%"
+              data-audience="150.5만명 예매중"
+              data-bg="assets/images/Bgimg5.png"
+            >
+              <span class="rank_number">5</span>
+              <img class="rank_poster" src="assets/images/img_box5.png" alt="슈퍼마리오 갤럭시 포스터" />
+              <div>
+                <h2>슈퍼마리오 갤럭시</h2>
+                <p>★ 9.4 · 예매율 8.1%</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick_menu_section" id="quick_menu">
+        <form class="quick_menu_card">
+          <span class="quick_menu_label">
+            <img src="assets/icons/icon_ticket.svg" alt="" width="20" height="20" />
+            빠른예매
+          </span>
+          <span class="quick_menu_divider" aria-hidden="true"></span>
+          <label class="quick_menu_select">
+            <span class="sr_only">영화 선택</span>
+            <select>
+              <option>영화 선택</option>
+              <option>군체</option>
+              <option>마이클</option>
+              <option>프로젝트 헤일메리</option>
+            </select>
+          </label>
+          <label class="quick_menu_select">
+            <span class="sr_only">극장 선택</span>
+            <select>
+              <option>극장 선택</option>
+              <option>강남</option>
+              <option>송파</option>
+              <option>잠실</option>
+            </select>
+          </label>
+          <label class="quick_menu_select">
+            <span class="sr_only">날짜 선택</span>
+            <select>
+              <option>날짜 선택</option>
+              <option>오늘</option>
+              <option>내일</option>
+              <option>주말</option>
+            </select>
+          </label>
+          <label class="quick_menu_select">
+            <span class="sr_only">인원 선택</span>
+            <select>
+              <option>인원 선택</option>
+              <option>2명</option>
+              <option>3명</option>
+              <option>4명</option>
+            </select>
+          </label>
+          <button type="submit">예매하기</button>
+        </form>
+      </section>
+
+      <section class="search_section">
+        <div class="search_card">
+          <div class="section_header">
+            <p class="eyebrow">통합 검색</p>
+            <h2>영화와 특별관, 이벤트를 한 번에 찾기</h2>
+          </div>
+          <div class="search_tabs" role="tablist" aria-label="검색 카테고리">
+            <button class="tab_button is_active" type="button">전체</button>
+            <button class="tab_button" type="button">영화</button>
+            <button class="tab_button" type="button">극장</button>
+            <button class="tab_button" type="button">이벤트</button>
+          </div>
+          <label class="search_field" for="search_input">
+            <span class="sr_only">검색어 입력</span>
+            <input id="search_input" type="text" placeholder="영화, 특별관, 이벤트를 검색해 보세요" />
+          </label>
+          <div class="popular_terms" aria-label="인기 검색어">
+            <span># 오펜하이머</span>
+            <span># 와일드 로봇</span>
+            <span># 프리미엄관</span>
+            <span># 굿즈</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="lotte_pick_section">
+        <div class="section_header">
+          <p class="eyebrow">ONLY at LOTTE CINEMA</p>
+          <h2>롯데시네마에서만 만날 수 있는 특별한 영화</h2>
+        </div>
+        <div class="poster_strip">
+          <article class="poster_card">
+            <img class="poster_visual" src="assets/images/poster_backrooms.jpeg" alt="백룸 포스터" />
+            <h3>백룸</h3>
+          </article>
+          <article class="poster_card">
+            <img class="poster_visual" src="assets/images/poster_doraemon.jpeg" alt="도라에몽: 신비의 해저비밀성 포스터" />
+            <h3>도라에몽: 신비의 해저비밀성</h3>
+          </article>
+          <article class="poster_card">
+            <img class="poster_visual" src="assets/images/poster_hope.jpeg" alt="호프 포스터" />
+            <h3>호프</h3>
+          </article>
+          <article class="poster_card">
+            <img class="poster_visual" src="assets/images/poster_wanggwasanamja.jpeg" alt="왕과 사는 남자 포스터" />
+            <h3>왕과 사는 남자</h3>
+          </article>
+        </div>
+      </section>
+
+      <section class="promo_section" id="promo_section">
+        <div class="promo_card">
+          <div class="promo_copy">
+            <p class="eyebrow">기대작</p>
+            <h2>예고편 없이도 설레는 영화</h2>
+            <p>
+              새로운 장르의 서사를 전개하는 기대작을 먼저 만나보세요. 특별한 관객 경험과 함께
+              관람 전 분위기를 즐길 수 있습니다.
             </p>
-            <div class="hero-actions">
-              <a class="button primary" href="#special">상세 보기</a>
-              <a class="button secondary" href="#goods">굿즈 둘러보기</a>
+            <div class="hero_actions">
+              <a class="button_primary" href="#quick_menu">예매하기</a>
+              <a class="button_secondary" href="#">상세정보</a>
             </div>
           </div>
+          <img class="promo_visual" src="assets/images/hero_bg_michael.png" alt="기대작 이미지" />
+        </div>
+      </section>
 
-          <div class="hero-visual" aria-hidden="true">
-            <div class="visual-card visual-card-large">
-              <div class="ring ring-1"></div>
-              <div class="ring ring-2"></div>
-              <div class="poster-stack">
-                <div class="poster poster-a"></div>
-                <div class="poster poster-b"></div>
-              </div>
+      <section class="mood_section">
+        <div class="section_header">
+          <p class="eyebrow">MOOD CINEMA</p>
+          <h2>당신의 취향에 맞는 영화를 추천합니다</h2>
+        </div>
+        <div class="mood_grid">
+          <article class="mood_card mood_card--thriller">
+            <h3>장르 추천</h3>
+            <p>스릴러·액션</p>
+          </article>
+          <article class="mood_card mood_card--score">
+            <h3>평점 추천</h3>
+            <p>9점대</p>
+          </article>
+          <article class="mood_card mood_card--special">
+            <h3>특별관 추천</h3>
+            <p>프리미엄관</p>
+          </article>
+          <article class="mood_card mood_card--pick">
+            <h3>전문가 PICK</h3>
+            <p>관객의 선택</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="special_section" id="special_section">
+        <div class="section_header">
+          <p class="eyebrow">SPECIAL</p>
+          <h2>몰입형 특별관을 경험해 보세요</h2>
+        </div>
+        <div class="special_tabs">
+          <button class="tab_button is_active" type="button">몰입형</button>
+          <button class="tab_button" type="button">동반관람형</button>
+          <button class="tab_button" type="button">프리미엄·휴식형</button>
+          <button class="tab_button" type="button">체험형</button>
+        </div>
+        <div class="special_cards">
+          <article class="special_card">
+            <img src="assets/images/special_super_led.png" alt="수퍼 LED 상영관" />
+            <span class="special_badge">수퍼 LED</span>
+          </article>
+          <article class="special_card">
+            <span class="special_badge">수퍼플렉스</span>
+          </article>
+          <article class="special_card">
+            <span class="special_badge">광음시네마</span>
+          </article>
+          <article class="special_card">
+            <img src="assets/images/special_gwangeum_led.png" alt="광음 LED 상영관" />
+            <span class="special_badge">광음 LED</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="goods_section" id="goods_section">
+        <div class="goods_copy">
+          <p class="eyebrow">CINEMA GOODS</p>
+          <h2>영화의 감동을 집으로 가져가세요</h2>
+          <p>한정판 굿즈와 스페셜한 상품을 만나보세요.</p>
+          <a class="button_primary" href="#">스토어 바로가기</a>
+        </div>
+        <div class="goods_cards">
+          <article class="goods_item"></article>
+          <article class="goods_item"></article>
+          <article class="goods_item"></article>
+        </div>
+      </section>
+
+      <section class="sns_section">
+        <div class="section_header">
+          <p class="eyebrow">SNS</p>
+          <h2>지금 뜨는 영화 이야기</h2>
+        </div>
+        <div class="sns_grid">
+          <article class="sns_card">
+            <img class="sns_visual" src="assets/images/sns_kimjunsu.png" alt="SNS 콘텐츠 1" />
+            <p>“영화 속 세상을 더 깊게 느껴보세요”</p>
+          </article>
+          <article class="sns_card">
+            <div class="sns_visual"></div>
+            <p>“전시회처럼 즐기는 특별한 시네마 경험”</p>
+          </article>
+          <article class="sns_card">
+            <div class="sns_visual"></div>
+            <p>“이달의 굿즈와 함께하는 특별한 밤”</p>
+          </article>
+          <article class="sns_card">
+            <div class="sns_visual"></div>
+            <p>“영화와 음악이 만나는 순간”</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="event_section" id="event_section">
+        <div class="section_header">
+          <p class="eyebrow">이벤트 & 혜택</p>
+          <h2>진행 중인 이벤트를 확인해 보세요</h2>
+        </div>
+        <div class="event_list">
+          <article class="event_item">
+            <span class="event_badge">한정</span>
+            <div>
+              <h3>시네마 패스 혜택</h3>
+              <p>2026.08.15 마감</p>
             </div>
-            <div class="visual-card visual-card-small">
-              <span>NOW SHOWING</span>
-              <strong>2026 Summer Edition</strong>
+          </article>
+          <article class="event_item">
+            <span class="event_badge">신규</span>
+            <div>
+              <h3>특별관 프리뷰</h3>
+              <p>2026.08.22 마감</p>
             </div>
-          </div>
-        </section>
-
-        <section class="section" id="lottepick">
-          <div class="section-heading">
-            <p class="eyebrow">LOTTE PICK</p>
-            <h2>오늘의 추천</h2>
-          </div>
-          <div class="card-grid three-up">
-            <article class="feature-card">
-              <span class="tag">NEW</span>
-              <h3>클래식 무드</h3>
-              <p>영화와 음악, 향의 분위기를 한 번에 느낄 수 있는 추천 콘셉트</p>
-            </article>
-            <article class="feature-card accent">
-              <span class="tag">HOT</span>
-              <h3>시네마 나이트</h3>
-              <p>저녁 시간대의 특별한 관람 경험과 함께하는 프리미엄 이벤트</p>
-            </article>
-            <article class="feature-card">
-              <span class="tag">EVENT</span>
-              <h3>관람 혜택</h3>
-              <p>예매와 굿즈, 스페셜 관람권까지 이어지는 통합 혜택 제안</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="section split-section" id="mood">
-          <div class="section-heading">
-            <p class="eyebrow">MOOD</p>
-            <h2>감성 있는 분위기</h2>
-          </div>
-          <div class="mood-layout">
-            <div class="mood-panel large">
-              <div class="panel-glow"></div>
-              <h3>Dark Cinema</h3>
-              <p>어두운 배경과 선명한 포인트 컬러로 영화의 깊이를 강조합니다.</p>
+          </article>
+          <article class="event_item">
+            <span class="event_badge">추천</span>
+            <div>
+              <h3>굿즈 사전 예약</h3>
+              <p>2026.08.30 마감</p>
             </div>
-            <div class="mood-stack">
-              <div class="mood-panel small">
-                <h3>Golden Hour</h3>
-                <p>빛의 온도를 바꾸며 따뜻한 관람 분위기를 연출합니다.</p>
-              </div>
-              <div class="mood-panel small alt">
-                <h3>Retro Frame</h3>
-                <p>레트로한 질감과 타이포그래피를 통해 클래식한 매력을 드러냅니다.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+          </article>
+        </div>
+      </section>
+    </main>
 
-        <section class="section" id="special">
-          <div class="section-heading">
-            <p class="eyebrow">SPECIAL</p>
-            <h2>스페셜 전시</h2>
-          </div>
-          <div class="special-card">
-            <div class="special-copy">
-              <span class="tag">SPECIAL</span>
-              <h3>시네마의 순간을 특별하게</h3>
-              <p>
-                한정 판권, 특별 상영, 인터랙티브 콘텐츠와 함께 오프라인 경험을
-                디지털로 확장한 기획 전시입니다.
-              </p>
-              <a class="button primary" href="#event">자세히 보기</a>
-            </div>
-            <div class="special-visual" aria-hidden="true"></div>
-          </div>
-        </section>
+    <footer class="site_footer">
+      <p>LOTTE CINEMA © 2026</p>
+      <div>
+        <a href="#">회사소개</a>
+        <a href="#">이용약관</a>
+        <a href="#">개인정보처리방침</a>
+      </div>
+    </footer>
 
-        <section class="section" id="goods">
-          <div class="section-heading">
-            <p class="eyebrow">굿즈</p>
-            <h2>한정 굿즈</h2>
-          </div>
-          <div class="card-grid four-up">
-            <article class="product-card">
-              <div class="product-badge">COLLECTION</div>
-              <h3>포스터 세트</h3>
-              <p>시네마 분위기를 집 안에 담아낼 수 있는 한정판 포스터</p>
-            </article>
-            <article class="product-card">
-              <div class="product-badge">LIMITED</div>
-              <h3>체인 스티커</h3>
-              <p>영화 속 장면을 모티브로 한 작은 컬렉션 아이템</p>
-            </article>
-            <article class="product-card">
-              <div class="product-badge">NEW</div>
-              <h3>스냅북</h3>
-              <p>다채로운 인쇄와 질감으로 구성된 한정판 스냅북</p>
-            </article>
-            <article class="product-card">
-              <div class="product-badge">PREMIUM</div>
-              <h3>캡슐 케이스</h3>
-              <p>디테일한 마감으로 완성한 프리미엄 액세서리</p>
-            </article>
-          </div>
-        </section>
+    <script>
+      document.querySelectorAll('.tab_button').forEach((button) => {
+        button.addEventListener('click', () => {
+          const group = button.closest('.special_tabs, .search_tabs');
+          if (!group) {
+            return;
+          }
+          group.querySelectorAll('.tab_button').forEach((item) => item.classList.remove('is_active'));
+          button.classList.add('is_active');
+        });
+      });
 
-        <section class="section event-section" id="event">
-          <div class="section-heading">
-            <p class="eyebrow">이벤트 혜택</p>
-            <h2>이벤트와 혜택</h2>
-          </div>
-          <div class="event-strip">
-            <article>
-              <h3>회원 전용<br />시네마 패스</h3>
-              <p>매월 업데이트되는 특별한 할인과 혜택</p>
-            </article>
-            <article>
-              <h3>친구 초대<br />추천 쿠폰</h3>
-              <p>초대할 때마다 보너스 혜택을 누릴 수 있는 이벤트</p>
-            </article>
-            <article>
-              <h3>스페셜<br />관람권</h3>
-              <p>프리미엄 관람 경험을 선사하는 한정권</p>
-            </article>
-          </div>
-        </section>
+      const rankItems = document.querySelectorAll('.rank_item');
+      const heroEyebrow = document.getElementById('hero_eyebrow');
+      const heroTitle = document.getElementById('hero_title');
+      const heroSubtitle = document.getElementById('hero_subtitle');
+      const heroAge = document.getElementById('hero_age');
+      const heroGenre = document.getElementById('hero_genre');
+      const heroRating = document.getElementById('hero_rating');
+      const heroPercent = document.getElementById('hero_percent');
+      const heroAudience = document.getElementById('hero_audience');
 
-        <section class="section sns-section" id="sns">
-          <div class="section-heading">
-            <p class="eyebrow">MAIN CONTENTS - 롯시SNS</p>
-            <h2>소셜 미디어</h2>
-          </div>
-          <div class="sns-grid">
-            <article class="sns-card">
-              <h3>Instagram</h3>
-              <p>실시간으로 공개되는 시네마 무드와 특별한 순간들</p>
-            </article>
-            <article class="sns-card">
-              <h3>YouTube</h3>
-              <p>다음 상영작과 이벤트 정보, 제작 스토리를 확인해보세요</p>
-            </article>
-            <article class="sns-card">
-              <h3>Community</h3>
-              <p>관객들의 반응과 추천 콘텐츠를 한눈에 만나보세요</p>
-            </article>
-          </div>
-        </section>
-      </main>
+      const heroStage = document.querySelector('.hero_stage');
 
-      <footer class="footer">
-        <p>LOTTE CINEMA © 2026</p>
-        <a href="#">Back to top</a>
-      </footer>
-    </div>
+      function handleRankItemFocus(item) {
+        rankItems.forEach((entry) => entry.classList.remove('is_active'));
+        item.classList.add('is_active');
+
+        heroEyebrow.textContent = `실시간 예매 #${item.dataset.number}`;
+        heroTitle.textContent = item.dataset.title;
+        heroSubtitle.textContent = item.dataset.subtitle;
+        heroAge.textContent = item.dataset.age;
+        heroGenre.textContent = item.dataset.genre;
+        heroRating.textContent = `★ ${item.dataset.rating} / 10`;
+        heroPercent.textContent = `예매율 ${item.dataset.percent}`;
+        heroAudience.textContent = item.dataset.audience;
+
+        if (item.dataset.bg) {
+          const backgroundImage = item.dataset.bgFlip === 'true'
+            ? `linear-gradient(90deg, rgba(6,7,11,0.92) 0%, rgba(6,7,11,0.55) 45%, rgba(6,7,11,0.25) 100%), url('${item.dataset.bg}')`
+            : `linear-gradient(90deg, rgba(6,7,11,0.92) 0%, rgba(6,7,11,0.55) 45%, rgba(6,7,11,0.25) 100%), url('${item.dataset.bg}')`;
+          heroStage.style.backgroundImage = backgroundImage;
+          heroStage.style.backgroundPosition = item.dataset.bgFlip === 'true' ? 'right center' : 'center';
+          heroStage.classList.add('has_bg_image');
+        } else {
+          heroStage.style.backgroundImage = '';
+          heroStage.classList.remove('has_bg_image');
+        }
+      }
+
+      rankItems.forEach((item) => {
+        item.addEventListener('mouseenter', () => handleRankItemFocus(item));
+        item.addEventListener('focus', () => handleRankItemFocus(item));
+      });
+
+      handleRankItemFocus(document.querySelector('.rank_item.is_active'));
+    </script>
   </body>
 </html>
