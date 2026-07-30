@@ -115,8 +115,7 @@
                   data-rating="9.4"
                   data-percent="15.1%"
                   data-audience="162.8만 명 예매중"
-                  data-bg="assets/images/hero_bg_michael_flipped.png"
-                  data-bg-flip="true"
+                  data-bg="assets/images/hero_bg_michael.png"
                 >
                   <span class="rank_number">2</span>
                   <div class="rank_poster_box">
@@ -302,7 +301,7 @@
           <h2>MOOD CINEMA</h2>
         </div>
         <div class="mood_scroll">
-          <div class="mood_slide">
+          <div class="mood_slide is_active">
             <div class="mood_progress" aria-hidden="true">
               <span class="is_current"></span><span></span><span></span><span></span>
             </div>
@@ -415,7 +414,7 @@
                 <a class="promo_btn_details" href="#">상세정보</a>
               </div>
             </div>
-            <img class="promo_visual" src="assets/images/promo/promo_grid1.png" alt="스파이더맨: 브랜드 뉴 데이 예고 영상" />
+            <video class="promo_visual" src="assets/images/promo/mv1.mp4" autoplay muted loop playsinline alt="스파이더맨: 브랜드 뉴 데이 예고 영상" ></video>
           </div>
           <div class="promo_slide">
             <img class="promo_logo" src="assets/images/promo/promo_logo2.png" alt="미니언즈 &amp; 몬스터즈" />
@@ -427,7 +426,7 @@
                 <a class="promo_btn_details" href="#">상세정보</a>
               </div>
             </div>
-            <img class="promo_visual" src="assets/images/promo/promo_grid2.png" alt="미니언즈 &amp; 몬스터즈 예고 영상" />
+            <video class="promo_visual" src="assets/images/promo/mv2.mp4" autoplay muted loop playsinline alt="미니언즈 &amp; 몬스터즈 예고 영상" ></video>
           </div>
           <div class="promo_slide">
             <img class="promo_logo" src="assets/images/promo/promo_logo3.png" alt="토이 스토리 5" />
@@ -445,7 +444,7 @@
                 <a class="promo_btn_details" href="#">상세정보</a>
               </div>
             </div>
-            <img class="promo_visual" src="assets/images/promo/promo_grid3.png" alt="토이 스토리 5 예고 영상" />
+            <video class="promo_visual" src="assets/images/promo/mv3.mp4" autoplay muted loop playsinline alt="토이 스토리 5 예고 영상" ></video>
           </div>
           <div class="promo_slide">
             <img class="promo_logo" src="assets/images/promo/promo_logo4.png" alt="와일드 씽" />
@@ -463,7 +462,7 @@
                 <a class="promo_btn_details" href="#">상세정보</a>
               </div>
             </div>
-            <img class="promo_visual" src="assets/images/promo/promo_grid4.png" alt="와일드 씽 예고 영상" />
+            <video class="promo_visual" src="assets/images/promo/mv4.mp4" autoplay muted loop playsinline alt="와일드 씽 예고 영상"></video>
           </div>
         </div>
         <div class="promo_pagination" aria-hidden="true">
@@ -701,21 +700,36 @@
         });
       });
 
+      const moodSection = document.querySelector('.mood_section');
       const moodScroll = document.querySelector('.mood_scroll');
-      if (moodScroll) {
-        moodScroll.addEventListener(
+      const moodSlides = moodScroll ? Array.from(moodScroll.querySelectorAll('.mood_slide')) : [];
+      if (moodSection && moodScroll && moodSlides.length > 0) {
+        let moodSlideIndex = 0;
+        let isMoodTransitioning = false;
+
+        moodSection.addEventListener(
           'wheel',
           (event) => {
             if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
               return;
             }
-            const maxScrollLeft = moodScroll.scrollWidth - moodScroll.clientWidth;
-            const nextScrollLeft = Math.max(0, Math.min(maxScrollLeft, moodScroll.scrollLeft + event.deltaY));
-            if (nextScrollLeft === moodScroll.scrollLeft) {
+            const isForward = event.deltaY > 0;
+            const isAtStart = moodSlideIndex === 0;
+            const isAtEnd = moodSlideIndex === moodSlides.length - 1;
+            if ((isForward && isAtEnd) || (!isForward && isAtStart)) {
               return;
             }
             event.preventDefault();
-            moodScroll.scrollLeft = nextScrollLeft;
+            if (isMoodTransitioning) {
+              return;
+            }
+            moodSlides[moodSlideIndex].classList.remove('is_active');
+            moodSlideIndex += isForward ? 1 : -1;
+            moodSlides[moodSlideIndex].classList.add('is_active');
+            isMoodTransitioning = true;
+            window.setTimeout(() => {
+              isMoodTransitioning = false;
+            }, 500);
           },
           { passive: false }
         );

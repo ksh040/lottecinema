@@ -127,7 +127,10 @@
   --font-rixyeoljeongdo: 'RixYeoljeongdo', var(--font-notosans);
   --font-dmseriftext: 'DM Serif Text', Georgia, serif;
   --page-max-width: 1920px;
-  --page-padding-x: clamp(56px, 6vw, 160px);
+  /* Figma 1920px 기준 본문 좌우 여백 220px(1480px 콘텐츠 폭), 1280px 브레이크포인트에서 40px로 자연스럽게 이어지도록 선형 보간 */
+  --page-padding-x: clamp(40px, 28.125vw - 320px, 220px);
+  /* Figma 1920px 기준 헤더 좌우 여백 76px(본문과 다른 값) */
+  --header-padding-x: 76px;
   --section-gap: 40px;
 }
 
@@ -174,7 +177,7 @@ main,
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  padding: 15px var(--page-padding-x);
+  padding: 15px var(--header-padding-x);
   width: min(100%, var(--page-max-width));
   margin: 0 auto;
 }
@@ -299,7 +302,8 @@ main {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.55) 70%, rgba(0,0,0,0.85) 100%),
+  /* 하단은 body 배경색(#141414)과 완전히 같은 색+불투명도로 맞춰서 다음 섹션과의 경계선이 안 보이게 함 */
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.55) 70%, #141414 100%),
     linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 45%, rgba(0,0,0,0) 70%);
   pointer-events: none;
 }
@@ -503,7 +507,7 @@ p {
 }
 
 .hero_top5 {
-  width: 516px;
+  width: 526px;
   max-width: 100%;
   flex-shrink: 0;
 }
@@ -763,7 +767,8 @@ p {
 }
 
 .lotte_pick_section {
-  background: #000;
+  /* body 배경(#141414)에서 부드럽게 검정으로 들어갔다가 다시 빠져나오도록(mood_section과 동일한 방식) */
+  background: linear-gradient(180deg, rgba(20,20,20,0) 0%, #000 12%, #000 88%, rgba(20,20,20,0) 100%);
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
@@ -1015,7 +1020,7 @@ p {
 }
 
 .mood_header h2 {
-  font-family: var(--font-pretendard);
+  font-family: var(--font-sbaggro);
   font-weight: 900;
   font-size: clamp(2rem, 3.4vw, 65px);
   margin-top: 8px;
@@ -1023,19 +1028,19 @@ p {
 
 .mood_scroll {
   display: flex;
-  gap: 150px;
-  overflow-x: auto;
-  scroll-snap-type: x proximity;
-  padding: 20px 40px;
-  scrollbar-width: thin;
+  /* 컨테이너 자체는 스크롤되지 않고, 안의 .mood_slide 하나만 is_active로 바뀌며 보임 */
+  padding: 20px 40px 70px;
 }
 
 .mood_slide {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 74px;
-  flex-shrink: 0;
-  scroll-snap-align: start;
+  width: 100%;
+}
+
+.mood_slide.is_active {
+  display: flex;
 }
 
 .mood_progress {
@@ -1108,6 +1113,7 @@ p {
 .mood_slide_posters {
   position: relative;
   width: 500px;
+  max-width: 100%;
   height: 490px;
   flex-shrink: 0;
 }
@@ -1641,7 +1647,8 @@ p {
   }
 
   .mood_slide {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
@@ -1737,11 +1744,14 @@ p {
   }
 
   .mood_slide {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: flex-start;
     min-height: 0;
   }
 
   .mood_slide_posters {
+    width: 100%;
+    max-width: 320px;
     height: 220px;
   }
 
