@@ -72,7 +72,7 @@
                   <img src="assets/icons/icon_ticket.svg" alt="" width="29" height="29" />
                   예매하기
                 </a>
-                <a class="button_trailer" href="#promo_section">
+                <a class="button_trailer" href="#">
                   <img src="assets/icons/icon_play.svg" alt="" width="16" height="16" />
                   예고편
                 </a>
@@ -477,24 +477,24 @@
           <p class="special_subtitle">특별한 영화 경험을 선택하세요</p>
         </div>
         <div class="special_tabs">
-          <button class="tab_button is_active" type="button">
+          <button class="tab_button is_active" type="button" data-tab="immersive">
             <img src="assets/icons/icon_special_immersive.svg" alt="" width="40" height="40" />
             몰입형 상영관
           </button>
-          <button class="tab_button" type="button">
+          <button class="tab_button" type="button" data-tab="companion">
             <img src="assets/icons/icon_special_companion.svg" alt="" width="38" height="38" />
             동반 관람형 상영관
           </button>
-          <button class="tab_button" type="button">
+          <button class="tab_button" type="button" data-tab="premium">
             <img src="assets/icons/icon_special_premium.svg" alt="" width="32" height="32" />
             프리미엄/휴식형 상영관
           </button>
-          <button class="tab_button" type="button">
+          <button class="tab_button" type="button" data-tab="experience">
             <img src="assets/icons/icon_special_experience.svg" alt="" width="32" height="32" />
             체험형 상영관
           </button>
         </div>
-        <div class="special_cards">
+        <div class="special_cards is_active" data-tab-panel="immersive">
           <article class="special_card">
             <img src="assets/images/special/card_superled.jpg" alt="수퍼 LED 상영관" />
             <span class="special_badge">수퍼 LED</span>
@@ -510,6 +510,36 @@
           <article class="special_card">
             <img src="assets/images/special/card_gwangeumled.jpg" alt="광음 LED 상영관" />
             <span class="special_badge">광음 LED</span>
+          </article>
+        </div>
+        <div class="special_cards special_cards--pair" data-tab-panel="companion">
+          <article class="special_card">
+            <img src="assets/images/special/card_cinefamily.png" alt="씨네패밀리 상영관" />
+            <span class="special_badge">씨네패밀리</span>
+          </article>
+          <article class="special_card">
+            <img src="assets/images/special/card_cinecouple.png" alt="씨네커플 상영관" />
+            <span class="special_badge">씨네커플</span>
+          </article>
+        </div>
+        <div class="special_cards special_cards--pair" data-tab-panel="premium">
+          <article class="special_card">
+            <img src="assets/images/special/card_charlotte.png" alt="샤롯데 상영관" />
+            <span class="special_badge">샤롯데</span>
+          </article>
+          <article class="special_card">
+            <img src="assets/images/special/card_recliner.png" alt="리클라이너 상영관" />
+            <span class="special_badge">리클라이너</span>
+          </article>
+        </div>
+        <div class="special_cards special_cards--pair" data-tab-panel="experience">
+          <article class="special_card">
+            <img src="assets/images/special/card_supermx4d.jpeg" alt="수퍼 MX4D 상영관" />
+            <span class="special_badge">수퍼 MX4D</span>
+          </article>
+          <article class="special_card">
+            <img src="assets/images/special/card_super4d.png" alt="수퍼 4D 상영관" />
+            <span class="special_badge">수퍼 4D</span>
           </article>
         </div>
       </section>
@@ -660,8 +690,36 @@
           }
           group.querySelectorAll('.tab_button').forEach((item) => item.classList.remove('is_active'));
           button.classList.add('is_active');
+
+          const targetTab = button.dataset.tab;
+          const section = group.closest('.special_section');
+          if (section && targetTab) {
+            section.querySelectorAll('.special_cards').forEach((panel) => {
+              panel.classList.toggle('is_active', panel.dataset.tabPanel === targetTab);
+            });
+          }
         });
       });
+
+      const moodScroll = document.querySelector('.mood_scroll');
+      if (moodScroll) {
+        moodScroll.addEventListener(
+          'wheel',
+          (event) => {
+            if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+              return;
+            }
+            const maxScrollLeft = moodScroll.scrollWidth - moodScroll.clientWidth;
+            const nextScrollLeft = Math.max(0, Math.min(maxScrollLeft, moodScroll.scrollLeft + event.deltaY));
+            if (nextScrollLeft === moodScroll.scrollLeft) {
+              return;
+            }
+            event.preventDefault();
+            moodScroll.scrollLeft = nextScrollLeft;
+          },
+          { passive: false }
+        );
+      }
 
       const rankItems = document.querySelectorAll('.rank_item');
       const heroEyebrow = document.getElementById('hero_eyebrow');
