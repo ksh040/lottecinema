@@ -8,7 +8,10 @@
 - Figma 원본 색상 토큰(`get_variable_defs` 확인값: main_red #e30413, main_gray #a1a1a1, gray-900 #666666, primary/100 #f2d046, primary/38 #f2d04661, subtit #99a1af, Goods 전용 red #e7000b)을 `:root` 변수로 반영
 - Figma 실제 폰트 5종 연결: Pretendard(공식 웹폰트 패키지, 9굵기), NanumSquare(L/R/B/EB), SB Aggro(L/M/B), RixYeoljeongdo(Regular). DM Serif Text만 아직 미확보(폴백 렌더링)
 - `download_assets`로 확보한 실제 로고/포스터/스틸컷/아이콘을 Header, Hero(배경 이미지 포함), LottePick, Promo, Special, SNS 일부에 적용
-- Hero TOP5 랭킹 항목 호버/포커스 시 히어로 카피(제목/부제/연령·장르 배지/평점/예매율/예매인원) + 배경 이미지(군체/마이클/슈퍼마리오 3종은 실제 스틸컷, 나머지 2종은 기존 카드 배경 유지) 전환 인터랙션
+- 이후 추가로 확보된 자산까지 반영: 5개 영화 전부의 히어로 배경 이미지(`img_box1~5.png` 포스터, `BgImage.png`/`Bgimg2~5.png` 배경 스틸컷), 정식 로고(`Logo.png`, 301×49), 실제 검색 아이콘(`search.svg`) — 헤더 검색 버튼의 손그림 SVG를 실제 아이콘으로 교체
+- 마이클(#2) 히어로 배경은 좌우 반전 버전(`hero_bg_michael_flipped.png`)을 사용하고 `data-bg-flip="true"`로 배경 위치를 오른쪽 정렬 — 기존에 준비만 되어 있고 연결이 안 되어 있던 스크립트의 `dataset.bgFlip` 분기를 실제로 활성화함
+- Hero TOP5 랭킹 항목 호버/포커스 시 히어로 카피(제목/부제/연령·장르 배지/평점/예매율/예매인원) + 배경 이미지(5개 전부 실제 스틸컷) 전환 인터랙션
+- SNS 카드 비율을 고정 240px 높이 대신 실제 Figma 비율(259:460 `aspect-ratio`)로 수정
 - QuickMenu를 그리드 폼에서 실제 디자인과 같은 알약형 한 줄 바(아이콘+빠른예매 라벨+구분선+드롭다운 4개+CTA)로 재구성
 - Special 섹션을 4카드(수퍼 LED/수퍼플렉스/광음시네마/광음 LED) 글래스모피즘 스타일(반투명 rgba(255,255,255,0.11)+보더+radius 10px)로 재구성, 실제 이미지 2장 적용
 - 360px/768px에서 가로 스크롤 없음 확인
@@ -36,11 +39,11 @@
 
 ## 다음 작업
 
-1. 검색 섹션 node-id 확인 후 실제 구현
-2. MoodCinema/Goods/SNS/Special 나머지 이미지 — 20개 캡을 넘는 자산은 섹션별 Figma node-id를 추가로 받아 개별 확보
+1. 검색 섹션(통합검색 UI) node-id 확인 후 실제 구현 — 히어로 검색 아이콘은 실제 아이콘으로 교체 완료했지만, 검색 섹션 자체는 여전히 보류 상태
+2. MoodCinema 카드, Goods 상품 3종, SNS 카드 2~4번, Special 카드 2종(수퍼플렉스/광음시네마) — 20개 캡을 넘는 자산은 섹션별 Figma node-id를 추가로 받아 개별 확보
 3. DM Serif Text 폰트 파일 확보 후 연결
 4. 폰트-섹션 매핑을 실제 Figma 데이터로 재검증 (현재는 시각적 추정)
-5. 1280px 브레이크포인트 재검증, Special/Goods 등 신규 마크업의 키보드 포커스 재확인
+5. 1280px 브레이크포인트 단독 재검증, Special/QuickMenu 등 신규 마크업의 키보드 tab 순서 재확인
 
 ## 마지막 검증 결과
 
