@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>마이클 | LOTTE CINEMA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Nanum+Gothic:wght@400;700;800&family=DM+Serif+Text:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="movie.css" />
+  </head>
+  <body>
+    <div class="page_background"></div>
+    <header class="site_header">
+      <div class="header_layout">
+        <a class="logo" href="index.html"><img src="assets/images/Logo.png" alt="LOTTE CINEMA" width="301" height="49" /></a>
+        <nav class="main_nav" aria-label="메인 메뉴">
+          <a href="booking.html">예매</a>
+          <a href="index.html#promo_section">영화</a>
+          <a href="index.html#special_section">영화관</a>
+          <a href="index.html#event_section">이벤트</a>
+          <a href="index.html#event_section">혜택</a>
+          <a href="index.html#goods_section">스토어</a>
+        </nav>
+        <div class="header_actions" aria-label="사용자 메뉴">
+          <button type="button" class="icon_button" aria-label="검색">
+            <img src="assets/icons/icon_search.svg" alt="" width="32" height="32" />
+          </button>
+          <button type="button" class="icon_button" aria-label="로그인">
+            <img src="assets/icons/icon_login.svg" alt="" width="33" height="33" />
+          </button>
+          <button type="button" class="icon_button" aria-label="티켓">
+            <img src="assets/icons/icon_ticket.svg" alt="" width="40" height="40" />
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="movie_page">
+      <section class="movie_hero">
+        <img class="movie_hero_bg" src="assets/images/movie/michael_hero_bg.png" alt="" />
+        <div class="movie_inner">
+          <div class="movie_neon"><img src="assets/images/movie/michael_neon.jpg" alt="Michael" /></div>
+          <div class="movie_title_box">
+            <h1>마이클</h1>
+            <p class="movie_meta">
+              <span>2026.05.13 개봉</span>
+              <span aria-hidden="true">|</span>
+              <span class="movie_meta_time"><img src="assets/icons/icon_clock.svg" alt="상영시간" />127분</span>
+              <span aria-hidden="true">|</span>
+              <span>12세이상관람가</span>
+              <span aria-hidden="true">|</span>
+              <span>누적 관객 64.7만명</span>
+            </p>
+          </div>
+          <div class="movie_poster">
+            <img src="assets/images/movie/michael_poster.jpg" alt="마이클 포스터" />
+            <ul class="movie_poster_badges" aria-label="상영 특별관">
+              <li><img src="assets/images/movie/special_badge_1.png" alt="샤롯데" /></li>
+              <li><img src="assets/images/movie/special_badge_2.png" alt="수퍼플렉스" /></li>
+              <li><img src="assets/images/movie/special_badge_3.png" alt="수퍼 LED" /></li>
+              <li><img src="assets/images/movie/special_badge_4.png" alt="수퍼 MX4D" /></li>
+            </ul>
+          </div>
+          <div class="movie_info">
+            <div class="movie_keywords">
+              <span class="movie_keyword">#OST</span>
+              <span class="movie_keyword">#스토리</span>
+              <span class="movie_keyword">#연출</span>
+              <span class="movie_rank"><img src="assets/icons/icon_trending_up.svg" alt="" />예매율 2위</span>
+            </div>
+            <p class="movie_copy_title">
+              &lt;보헤미안 랩소디&gt; 제작진과 팝의 황제 ‘마이클 잭슨’의 만남!<br />
+              2026년 그의 발끝에서 전설이 다시 시작된다!
+            </p>
+            <p class="movie_copy_text">
+              어린 나이에 형제들과 ‘잭슨 파이브’ 그룹의 막내로 데뷔하자마자<br />
+              음악적 천재성과 스타성으로 주목을 받은 ‘마이클 잭슨’.<br />
+              전세계적인 스타로 성공하지만,<br />
+              그는 가족에 대한 책임감과 자신의 음악적 정체성 사이에서 고민에 빠지게 된다.<br />
+              천재적인 뮤지션에서 시대를 초월한 아이콘이 되기까지, 그의 무대를 극장에서 확인하라!
+            </p>
+            <a class="movie_book_btn" href="booking.html?movie=michael">예매하기</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="movie_tabs" role="tablist" aria-label="영화 정보">
+        <button class="movie_tab is_active" type="button" role="tab" id="detail_tab" aria-controls="detail_panel" aria-selected="true">상세정보</button>
+        <button class="movie_tab" type="button" role="tab" id="review_tab" aria-controls="review_panel" aria-selected="false">리뷰</button>
+      </div>
+
+      <section class="movie_panel is_active" id="detail_panel" role="tabpanel" aria-labelledby="detail_tab">
+        <div class="movie_inner">
+          <div class="movie_detail_info">
+            <h2>영화정보</h2>
+            <dl class="movie_spec">
+              <div><dt>장르</dt><dd>드라마 / 미국</dd></div>
+              <div><dt>감독</dt><dd>안톤 후쿠아</dd></div>
+              <div><dt>출연</dt><dd class="sr_only">자파 잭슨, 니아 롱, 로라 해리어, 줄리아노 크루 발디, 마일즈 텔러, 콜맨 도밍고</dd></div>
+            </dl>
+          </div>
+          <ul class="movie_cast">
+            <li><img src="assets/images/movie/cast_1.png" alt="" />자파 잭슨</li>
+            <li><img src="assets/images/movie/cast_2.png" alt="" />니아 롱</li>
+            <li><img src="assets/images/movie/cast_3.png" alt="" />로라 해리어</li>
+            <li><img src="assets/images/movie/cast_4.png" alt="" />줄리아노 크루 발디</li>
+            <li><img src="assets/images/movie/cast_5.png" alt="" />마일즈 텔러</li>
+            <li><img src="assets/images/movie/cast_6.png" alt="" />콜맨 도밍고</li>
+          </ul>
+          <div class="movie_neon_large"><img src="assets/images/movie/michael_neon.jpg" alt="" /></div>
+
+          <div class="movie_trailer_section">
+            <div class="movie_trailer_visual"><img src="assets/images/movie/michael_hat.jpg" alt="" /></div>
+            <div class="movie_trailers">
+              <h2>트레일러</h2>
+              <a class="movie_trailer" href="#">
+                <span class="movie_trailer_thumb">
+                  <img src="assets/images/movie/trailer_1.jpg" alt="" />
+                  <img class="movie_trailer_play" src="assets/icons/icon_play_large.svg" alt="" />
+                </span>
+                티저 예고편
+              </a>
+              <a class="movie_trailer" href="#">
+                <span class="movie_trailer_thumb">
+                  <img src="assets/images/movie/trailer_2.jpg" alt="" />
+                  <img class="movie_trailer_play" src="assets/icons/icon_play_large.svg" alt="" />
+                </span>
+                2차 예고편
+              </a>
+              <a class="movie_trailer" href="#">
+                <span class="movie_trailer_thumb">
+                  <img src="assets/images/movie/trailer_3.jpg" alt="" />
+                  <img class="movie_trailer_play" src="assets/icons/icon_play_large.svg" alt="" />
+                </span>
+                비커밍 마이클
+              </a>
+            </div>
+          </div>
+
+          <div class="movie_stage movie_fade"><img src="assets/images/movie/michael_stage.png" alt="무대 위에서 공연하는 마이클" /></div>
+          <div class="movie_characters movie_fade">
+            <img src="assets/images/movie/michael_character_1.jpg" alt="캐릭터 포스터: 소년, 아이콘이 되다" />
+            <img src="assets/images/movie/michael_character_2.jpg" alt="캐릭터 포스터: 아이콘, 황제가 되다" />
+            <img src="assets/images/movie/michael_character_3.jpg" alt="캐릭터 포스터: 황제, 전설이 되다" />
+            <img src="assets/images/movie/michael_character_4.jpg" alt="캐릭터 포스터: 전설, 음악이 되다" />
+          </div>
+          <img class="movie_tagline" src="assets/images/movie/michael_tagline.png" alt="소년, 음악이 되다" />
+          <div class="movie_four movie_fade"><img src="assets/images/movie/michael_four.jpg" alt="시대별 마이클 잭슨의 네 가지 모습" /></div>
+          <button type="button" class="movie_top_btn" id="movie_top_btn">
+            Top
+            <img src="assets/icons/icon_arrow_up.svg" alt="" />
+          </button>
+        </div>
+      </section>
+
+      <section class="movie_panel" id="review_panel" role="tabpanel" aria-labelledby="review_tab">
+        <div class="movie_inner">
+          <div class="review_stats">
+            <div class="review_stat">
+              <h2>OST·연기력</h2>
+              <img class="review_radar" src="assets/images/movie/review_radar.png" alt="관람 포인트 그래프: 사운드와 연기력이 높고 스토리, 몰입감, 영상미 순" />
+            </div>
+            <div class="review_stat">
+              <h2>관람객 분석</h2>
+              <img class="review_donut" src="assets/images/movie/review_donut.png" alt="" />
+              <ul class="review_gender">
+                <li><strong>남자</strong><span><img src="assets/icons/icon_male.svg" alt="" />57%</span></li>
+                <li><strong>여자</strong><span><img src="assets/icons/icon_female.svg" alt="" />43%</span></li>
+              </ul>
+            </div>
+            <div class="review_stat">
+              <h2>실관람객 평점</h2>
+              <p class="review_score">8.84 <span>/ 10</span></p>
+              <div class="review_stars" aria-hidden="true">
+                <img src="assets/icons/icon_rating_star.svg" alt="" />
+                <img src="assets/icons/icon_rating_star.svg" alt="" />
+                <img src="assets/icons/icon_rating_star.svg" alt="" />
+                <img src="assets/icons/icon_rating_star.svg" alt="" />
+                <img src="assets/icons/icon_rating_star_empty.svg" alt="" />
+                <img class="review_star_half" src="assets/icons/icon_rating_star_half.svg" alt="" />
+              </div>
+              <p class="review_count">1,257명 참여</p>
+            </div>
+          </div>
+
+          <div class="review_summary">
+            <h2>LOTTE CINEMA AI가 요약한 리뷰에요!</h2>
+            <ul class="review_summary_tags">
+              <li>#<img src="assets/images/movie/emoji_headphone.png" alt="" />OST좋은</li>
+              <li>#<img src="assets/images/movie/emoji_clapper.png" alt="" />싱크로율좋은</li>
+              <li>#<img src="assets/images/movie/emoji_sparkle.png" alt="" />몰입감있는</li>
+              <li>#<img src="assets/images/movie/emoji_fire.png" alt="" />전율있는</li>
+            </ul>
+            <p class="review_summary_quote">
+              “압도적인 OST와 공연 같은 무대 연출로 높은 몰입감을 선사하며,<br />
+              배우의 뛰어난 싱크로율과 감정 표현에 대한 호평이 이어지고 있어요.”
+            </p>
+          </div>
+
+          <div class="review_write">
+            <p>영화 관람 후 관람평 작성 시 L.POINT 50P 적립!</p>
+            <button type="button" class="review_write_btn">관람평 작성</button>
+          </div>
+
+          <div class="review_sort">
+            <button type="button" class="is_active" data-sort="date" aria-pressed="true">
+              <img class="review_sort_icon" src="assets/icons/icon_sort.svg" alt="" />최신순
+            </button>
+            <button type="button" data-sort="likes" aria-pressed="false">
+              <img src="assets/icons/icon_thumbs_up.svg" alt="" />공감순
+            </button>
+          </div>
+
+          <ul class="review_list" id="review_list">
+            <li class="review_item" data-date="202605181618" data-likes="0">
+              <span class="review_avatar"><img src="assets/icons/icon_user.svg" alt="" /></span>
+              <div class="review_author">
+                <strong>김*현</strong>
+                <span class="review_rating"><img src="assets/icons/icon_review_star.svg" alt="별점" />4.5</span>
+              </div>
+              <time class="review_date" datetime="2026-05-18T16:18">2026.05.18 16:18</time>
+              <div class="review_body">
+                <p class="review_tags"><span>#연출</span><span>#ost</span><span>+외 2개</span></p>
+                <p class="review_text">훌륭한 영화였습니다 마이클 잭슨이 환생한 기분</p>
+              </div>
+              <button type="button" class="review_like" aria-label="공감 0"><img src="assets/icons/icon_thumbs_up.svg" alt="" />0</button>
+            </li>
+            <li class="review_item" data-date="202605172245" data-likes="8">
+              <span class="review_avatar"><img src="assets/icons/icon_user.svg" alt="" /></span>
+              <div class="review_author">
+                <strong>이*윤</strong>
+                <span class="review_rating"><img src="assets/icons/icon_review_star.svg" alt="별점" />5.0</span>
+              </div>
+              <time class="review_date" datetime="2026-05-17T22:45">2026.05.17 22:45</time>
+              <div class="review_body">
+                <p class="review_tags"><span>#ost</span><span>#스토리</span><span>+외 1개</span></p>
+                <p class="review_text">마이클잭슨의 히트곡만 들어도 대만족</p>
+              </div>
+              <button type="button" class="review_like" aria-label="공감 8"><img src="assets/icons/icon_thumbs_up.svg" alt="" />8</button>
+            </li>
+            <li class="review_item" data-date="202605172239" data-likes="10">
+              <span class="review_avatar"><img src="assets/icons/icon_user.svg" alt="" /></span>
+              <div class="review_author">
+                <strong>김*수</strong>
+                <span class="review_rating"><img src="assets/icons/icon_review_star.svg" alt="별점" />4.6</span>
+              </div>
+              <time class="review_date" datetime="2026-05-17T22:39">2026.05.17 22:39</time>
+              <div class="review_body">
+                <p class="review_tags"><span>#ost</span><span>#스토리</span><span>+외 1개</span></p>
+                <p class="review_text">당신은 영원한 팝의 황제입니다</p>
+              </div>
+              <button type="button" class="review_like" aria-label="공감 10"><img src="assets/icons/icon_thumbs_up.svg" alt="" />10</button>
+            </li>
+            <li class="review_item" data-date="202605172238" data-likes="10">
+              <span class="review_avatar"><img src="assets/icons/icon_user.svg" alt="" /></span>
+              <div class="review_author">
+                <strong>박*훈</strong>
+                <span class="review_rating"><img src="assets/icons/icon_review_star.svg" alt="별점" />5.0</span>
+              </div>
+              <time class="review_date" datetime="2026-05-17T22:38">2026.05.17 22:38</time>
+              <div class="review_body">
+                <p class="review_tags"><span>#몰입감</span><span>#ost</span><span>+외 3개</span></p>
+                <p class="review_text">마이클 광음 잘 봄</p>
+              </div>
+              <button type="button" class="review_like" aria-label="공감 10"><img src="assets/icons/icon_thumbs_up.svg" alt="" />10</button>
+            </li>
+          </ul>
+
+          <a class="review_more_btn" href="#">
+            리뷰 전체보기
+            <img src="assets/icons/icon_chevron_right_small.svg" alt="" />
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site_footer">
+      <div class="footer_layout">
+        <div class="footer_company">
+          <a class="footer_logo" href="index.html"><img src="assets/images/Logo.png" alt="LOTTE CINEMA" width="182" height="28" /></a>
+          <div class="footer_business_info">
+            <p>롯데컬처웍스㈜ │ 대표이사 김종열 │ 고객센터 1544-8855</p>
+            <p>사업자등록번호 313-87-00979 │ 통신판매업신고 2018-서울송파-1184</p>
+          </div>
+          <p class="footer_copyright">Copyright © LOTTE CINEMA All Right Reserved.</p>
+        </div>
+        <nav class="footer_links" aria-label="footer 링크">
+          <a href="#">회사소개</a>
+          <a href="#">이용약관</a>
+          <a href="#">개인정보처리방침</a>
+          <a href="#">채용안내</a>
+          <a href="#">광고/임대문의</a>
+        </nav>
+        <div class="footer_actions">
+          <div class="footer_sns">
+            <a href="#" aria-label="인스타그램"><img src="assets/icons/icon_instagram.svg" alt="" width="18" height="18" /></a>
+            <a href="#" aria-label="유튜브"><img src="assets/icons/icon_youtube_footer.svg" alt="" width="18" height="18" /></a>
+            <a href="#" aria-label="페이스북"><img src="assets/icons/icon_facebook.svg" alt="" width="18" height="18" /></a>
+          </div>
+          <button type="button" class="footer_top_btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <img src="assets/icons/icon_top.svg" alt="" width="11" height="11" />
+            TOP
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const movieTabs = document.querySelectorAll('.movie_tab');
+      const moviePanels = document.querySelectorAll('.movie_panel');
+
+      movieTabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          movieTabs.forEach((item) => {
+            const isSelected = item === tab;
+            item.classList.toggle('is_active', isSelected);
+            item.setAttribute('aria-selected', String(isSelected));
+          });
+          moviePanels.forEach((panel) => {
+            panel.classList.toggle('is_active', panel.id === tab.getAttribute('aria-controls'));
+          });
+        });
+      });
+
+      if (window.location.hash === '#review') {
+        document.getElementById('review_tab').click();
+      }
+
+      document.getElementById('movie_top_btn').addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      const reviewList = document.getElementById('review_list');
+      const sortButtons = document.querySelectorAll('.review_sort button');
+
+      sortButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          sortButtons.forEach((item) => {
+            const isSelected = item === button;
+            item.classList.toggle('is_active', isSelected);
+            item.setAttribute('aria-pressed', String(isSelected));
+          });
+          const sortKey = button.dataset.sort;
+          Array.from(reviewList.children)
+            .sort((a, b) => Number(b.dataset[sortKey]) - Number(a.dataset[sortKey]) || Number(b.dataset.date) - Number(a.dataset.date))
+            .forEach((item) => reviewList.appendChild(item));
+        });
+      });
+    </script>
+  </body>
+</html>

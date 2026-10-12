@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>예매 | LOTTE CINEMA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Nanum+Gothic:wght@400;700;800&family=DM+Serif+Text:ital@0;1&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="booking.css" />
+  </head>
+  <body class="booking_body">
+    <div class="page_background"></div>
+    <header class="site_header">
+      <div class="header_layout">
+        <a class="logo" href="index.html"><img src="assets/images/Logo.png" alt="LOTTE CINEMA" width="301" height="49" /></a>
+        <nav class="main_nav" aria-label="메인 메뉴">
+          <a href="booking.html">예매</a>
+          <a href="index.html#promo_section">영화</a>
+          <a href="index.html#special_section">영화관</a>
+          <a href="index.html#event_section">이벤트</a>
+          <a href="index.html#event_section">혜택</a>
+          <a href="index.html#goods_section">스토어</a>
+        </nav>
+        <div class="header_actions" aria-label="사용자 메뉴">
+          <button type="button" class="icon_button" aria-label="검색">
+            <img src="assets/icons/icon_search.svg" alt="" width="32" height="32" />
+          </button>
+          <button type="button" class="icon_button" aria-label="로그인">
+            <img src="assets/icons/icon_login.svg" alt="" width="33" height="33" />
+          </button>
+          <button type="button" class="icon_button" aria-label="티켓">
+            <img src="assets/icons/icon_ticket.svg" alt="" width="40" height="40" />
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="booking_page" id="booking_page">
+      <div class="booking_banner is_hidden" id="booking_banner" aria-hidden="true"><img alt="" /></div>
+
+      <div class="booking_inner">
+        <button type="button" class="booking_back is_hidden" id="booking_back">
+          <img src="assets/icons/booking_arrow_left.svg" alt="" width="24" height="24" />
+          뒤로가기
+        </button>
+
+        <div class="booking_modes" id="booking_modes" role="group" aria-label="예매 방식">
+          <button type="button" class="booking_mode is_active" data-mode="movie" aria-pressed="true">영화별</button>
+          <button type="button" class="booking_mode" data-mode="theater" aria-pressed="false">극장별</button>
+        </div>
+
+        <div class="booking_progress" id="booking_progress">
+          <ol class="booking_stepper" id="booking_stepper" aria-label="예매 단계"></ol>
+          <div class="booking_summary" id="booking_summary" aria-label="선택한 내용"></div>
+        </div>
+
+        <!-- 영화 선택 -->
+        <section class="booking_step" data-step="movie" aria-labelledby="movie_step_title">
+          <div class="booking_movie_head">
+            <h2 id="movie_step_title">영화를 선택하세요</h2>
+            <div class="booking_sort" id="booking_sort" role="group" aria-label="영화 정렬">
+              <button type="button" class="is_active" data-sort="rate" aria-pressed="true">예매순</button>
+              <button type="button" data-sort="rating" aria-pressed="false">인기순</button>
+              <button type="button" data-sort="audience" aria-pressed="false">관객순</button>
+            </div>
+            <a class="booking_more_movies" href="index.html#promo_section">
+              더 많은 영화 보기
+              <img src="assets/icons/booking_chevron.svg" alt="" width="16" height="16" />
+            </a>
+          </div>
+          <ul class="booking_movies" id="booking_movies"></ul>
+          <button type="button" class="booking_next is_hidden" data-next>
+            다음
+            <img src="assets/icons/booking_next.svg" alt="" width="20" height="20" />
+          </button>
+        </section>
+
+        <!-- 극장 선택 -->
+        <section class="booking_step" data-step="theater" aria-label="극장 선택">
+          <label class="booking_theater_search">
+            <span class="sr_only">극장명 검색</span>
+            <input type="search" id="booking_theater_keyword" placeholder="극장명을 입력해주세요" autocomplete="off" />
+            <img src="assets/icons/booking_search.svg" alt="" />
+          </label>
+          <div class="booking_regions" id="booking_regions" role="group" aria-label="지역"></div>
+          <ul class="booking_theaters" id="booking_theaters"></ul>
+          <p class="booking_empty is_hidden" id="booking_theater_empty" role="status"></p>
+          <button type="button" class="booking_theater_more" id="booking_theater_more">
+            <img src="assets/icons/booking_plus.svg" alt="" width="24" height="24" />
+            <span>더보기</span>
+          </button>
+        </section>
+
+        <!-- 시간 선택 -->
+        <section class="booking_step" data-step="time" aria-label="시간 선택">
+          <div class="booking_time">
+            <p class="booking_month">
+              <span id="booking_month"></span>
+              <img src="assets/icons/booking_calendar.svg" alt="" />
+            </p>
+            <div class="booking_dates">
+              <button type="button" class="booking_date_prev" id="booking_date_prev" aria-label="이전 날짜">
+                <img src="assets/icons/booking_date_arrow.svg" alt="" />
+              </button>
+              <ul class="booking_date_list" id="booking_date_list"></ul>
+              <button type="button" id="booking_date_next" aria-label="다음 날짜">
+                <img src="assets/icons/booking_date_arrow.svg" alt="" />
+              </button>
+            </div>
+            <div class="booking_time_filters" id="booking_time_filters" role="group" aria-label="시간표 필터">
+              <button type="button" class="is_active" data-filter="all" aria-pressed="true">전체</button>
+              <button type="button" data-filter="special" aria-pressed="false">스페셜관</button>
+              <button type="button" data-filter="13" aria-pressed="false">13시 이후</button>
+              <button type="button" data-filter="19" aria-pressed="false">19시 이후</button>
+              <button type="button" data-filter="22" aria-pressed="false">심야</button>
+            </div>
+            <div class="booking_showtimes" id="booking_showtimes"></div>
+            <p class="booking_empty is_hidden" id="booking_showtime_empty" role="status">조건에 맞는 상영 시간이 없습니다.</p>
+          </div>
+          <button type="button" class="booking_next is_hidden" data-next>
+            다음
+            <img src="assets/icons/booking_next.svg" alt="" width="20" height="20" />
+          </button>
+        </section>
+
+        <!-- 좌석 선택 -->
+        <section class="booking_step" data-step="seat" aria-labelledby="seat_step_title">
+          <div class="booking_people">
+            <div class="booking_people_head">
+              <h2 id="seat_step_title">인원 선택</h2>
+              <p>·인원은 최대 8명까지 선택 가능합니다.</p>
+            </div>
+            <div class="booking_counters" id="booking_counters"></div>
+          </div>
+          <p class="booking_screen" aria-hidden="true">SCREEN</p>
+          <div class="booking_seats" id="booking_seats" role="group" aria-label="좌석"></div>
+          <ul class="booking_legend" aria-label="좌석 안내">
+            <li><img src="assets/images/booking/seat_selected.png" alt="" />선택</li>
+            <li><img src="assets/images/booking/seat_booked.png" alt="" />예매 완료</li>
+            <li><span class="booking_legend_blocked"></span>선택 불가</li>
+          </ul>
+          <p class="booking_hint" id="booking_seat_hint" role="status"></p>
+          <div class="booking_total">
+            <div>
+              <p class="booking_total_seats">선택한 좌석 <strong id="booking_total_seats"></strong></p>
+              <p class="booking_total_price">총 합계 <strong id="booking_total_price">0원</strong></p>
+            </div>
+            <button type="button" class="booking_pay_btn" id="booking_seat_done" disabled>결제하기</button>
+          </div>
+        </section>
+
+        <!-- 결제 -->
+        <section class="booking_step" data-step="pay" aria-label="결제">
+          <div class="booking_pay">
+            <div class="booking_info">
+              <h2>예매정보</h2>
+              <img class="booking_info_poster" id="booking_info_poster" alt="" />
+              <p class="booking_info_title" id="booking_info_title"></p>
+              <dl class="booking_info_list" id="booking_info_list"></dl>
+            </div>
+            <div class="booking_pay_box">
+              <h2>할인/포인트</h2>
+              <div class="booking_pay_options" id="booking_discounts">
+                <button type="button" aria-pressed="false">L.POINT 조회</button>
+                <button type="button" aria-pressed="false">관람권</button>
+                <button type="button" aria-pressed="false">할인원</button>
+                <button type="button" aria-pressed="false">제휴 포인트/할인</button>
+              </div>
+            </div>
+            <div class="booking_pay_box">
+              <h2>최종 결제수단</h2>
+              <div class="booking_pay_options" id="booking_methods">
+                <button type="button" aria-pressed="false">신용/체크카드</button>
+                <button type="button" aria-pressed="false">간편결제</button>
+                <button type="button" aria-pressed="false">휴대폰</button>
+                <button type="button" aria-pressed="false">무통장입금</button>
+              </div>
+            </div>
+            <div class="booking_pay_total">
+              <span>총 금액</span>
+              <strong id="booking_pay_price"></strong>
+              <button type="button" class="booking_pay_btn" id="booking_pay_done">결제하기</button>
+            </div>
+          </div>
+          <p class="booking_hint" id="booking_pay_hint" role="status"></p>
+        </section>
+
+        <!-- 예매 완료 -->
+        <section class="booking_step" data-step="done" aria-labelledby="done_step_title">
+          <h2 class="booking_done_title" id="done_step_title">예매가 완료되었습니다</h2>
+          <div class="booking_done_stage">
+            <div class="booking_done_glow" aria-hidden="true"></div>
+            <div class="booking_ticket_box">
+              <div class="booking_ticket_tilt" id="booking_ticket_tilt">
+                <div class="booking_ticket">
+                  <div class="booking_ticket_visual" id="booking_ticket_visual"></div>
+                  <div class="booking_ticket_info">
+                    <h3 id="booking_ticket_title"></h3>
+                    <dl id="booking_ticket_list"></dl>
+                  </div>
+                  <span class="booking_ticket_shine" aria-hidden="true"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a class="booking_home" href="index.html">메인으로</a>
+        </section>
+      </div>
+    </main>
+
+
+    <script>
+      // 시안에 있는 데이터. audience(관객 수, 만 명)는 시안에 없어 정렬용으로 넣은 임시 값
+      const MOVIES = [
+        { id: 'gunche', title: '군체', age: '15', rate: 35, rating: null, dday: 'D-2', audience: 4.3, poster: 'assets/images/poster_gunche.jpeg' },
+        { id: 'michael', title: '마이클', age: '12', rate: 15.1, rating: 9.4, audience: 162.8, poster: 'assets/images/movie/michael_poster.jpg' },
+        { id: 'hailmary', title: '프로젝트 헤일메리', age: '12', rate: 13.2, rating: 9.4, audience: 160.2, poster: 'assets/images/booking/poster_hailmary.jpg' },
+        { id: 'prada', title: '악마는 프라다를 입는다 2', age: '12', rate: 11.2, rating: 9.2, audience: 159.7, poster: 'assets/images/booking/poster_prada.jpg' },
+        { id: 'salmokji', title: '살목지', age: '15', rate: 9.1, rating: 8.9, audience: 120, poster: 'assets/images/booking/poster_salmokji.jpg' },
+        // 예매 순위 5편에는 없지만 홈 화면의 예매하기로 들어올 수 있는 영화 (그 영화로 들어왔을 때만 목록 끝에 보임)
+        { id: 'supermario', title: '슈퍼마리오갤럭시', age: 'all', rate: 8.1, rating: 9.4, isExtra: true, poster: 'assets/images/img_box5.png' },
+        { id: 'spiderman', title: '스파이더맨: 브랜드 뉴 데이', isExtra: true, poster: 'assets/images/promo/promo_grid1.png' },
+        { id: 'minions', title: '미니언즈 & 몬스터즈', isExtra: true, poster: 'assets/images/promo/promo_grid2.png' },
+        { id: 'toystory', title: '토이 스토리 5', isExtra: true, poster: 'assets/images/promo/promo_grid3.png' },
+        { id: 'wildthing', title: '와일드 씽', isExtra: true, poster: 'assets/images/promo/promo_grid4.png' },
+        { id: 'beginagain', title: '비긴어게인', age: '15', rating: 9.1, isExtra: true, poster: 'assets/images/pick_beginagain.jpeg' },
+        { id: 'doraemon', title: '극장판 도라에몽: 신 진구의 해저비밀성', age: 'all', rating: 8.67, isExtra: true, poster: 'assets/images/pick_doraemon.jpeg' },
+        { id: 'blazetheway', title: "2026 &TEAM CONCERT TOUR 'BLAZE THE WAY' Live Viewing", age: 'all', rating: 9.1, isExtra: true, poster: 'assets/images/pick_blazetheway.jpeg' },
+        { id: 'scarymovie', title: '무서운 영화', rating: 7.21, isExtra: true, poster: 'assets/images/pick_scarymovie.jpeg' },
+      ];
+      const AGE_LABELS = { 12: '12세 이상', 15: '15세 이상', all: '전체 관람가' };
+      const HALL_LOGOS = {
+        super4d: { src: 'assets/images/special/logo_super4d.png', alt: '수퍼 4D' },
+        charlotte: { src: 'assets/images/special/logo_charlotte.png', alt: '샤롯데' },
+        superled: { src: 'assets/images/special/logo_superled.png', alt: '수퍼 LED' },
+      };
+      const THEATERS = [
+        { id: 'gasan', name: '가산디지털점', region: '서울', address: '서울 금천구 디지털로10길 9 1동', halls: ['super4d'], map: 'assets/images/booking/map_gasan.jpg' },
+        { id: 'konkuk', name: '건대입구점', region: '서울', address: '서울 광진구 아차산로 272 더샵스타시티', halls: ['super4d', 'charlotte', 'superled'], map: 'assets/images/booking/map_konkuk.jpg' },
+        { id: 'gimpo', name: '김포공항점', region: '서울', address: '서울 강서구 하늘길 77(방화동)', halls: ['4K LASER', 'charlotte'], map: 'assets/images/booking/map_gimpo.jpg' },
+      ];
+      const REGIONS = [['서울', 23], ['경기/인천', 40], ['충청/대전', 12], ['전라/광주', 11], ['경북/대구', 14], ['경남/부산/울산', 21], ['강원', 5], ['제주', 2]];
+      // 시안의 시간표 하나를 모든 영화·극장·날짜에 같이 씀
+      const SHOW_GROUPS = [
+        { label: ['2D', '샤롯데', '4K', '샤롯데 LASER'], hall: '샤롯데', hallFull: '샤롯데LASER··/4K', total: 32, isSpecial: true, times: [['15:50', 32], ['18:30', 30], ['21:10', 30]] },
+        { label: ['2D', '수퍼LED(일반)', '4K'], desc: '10배의 밝기, 무한대의 명암비, 완벽한 실재감, 세계최초 LED 스크린을 경험해보세요.', hall: '7관', hallFull: '수퍼LED(일반)/4K', total: 175, isSpecial: true, times: [['14:50', 155], ['17:30', 167], ['20:10', 166], ['22:50', 171]] },
+      ];
+      const PEOPLE = [['adult', '성인'], ['teen', '청소년'], ['senior', '경로'], ['disabled', '장애인']];
+      const STEP_INFO = {
+        movie: { label: '영화 선택', icon: 'movie' },
+        theater: { label: '극장 선택', icon: 'theater' },
+        time: { label: '시간 선택', icon: 'time' },
+        seat: { label: '좌석 선택', icon: 'seat' },
+        pay: { label: '결제', icon: 'pay' },
+      };
+      const BASE_DATE = new Date(2026, 4, 15);
+      const VISIBLE_DAYS = 9;
+      const MAX_DATE_OFFSET = 14;
+      const RUNNING_MINUTES = 137;
+      const SEAT_PRICE = 35000;
+      const MAX_PEOPLE = 8;
+      const SEAT_ROWS = ['A', 'B', 'C', 'D'];
+      const SEATS_PER_ROW = 8;
+      const BOOKED_SEATS = ['D5', 'D6'];
+      const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
+      const FIT_MIN_WIDTH = 1024;
+
+      const state = {
+        mode: 'movie',
+        step: 'movie',
+        movieId: null,
+        theaterId: null,
+        dateOffset: 0,
+        dayIndex: 0,
+        show: null,
+        counts: { adult: 0, teen: 0, senior: 0, disabled: 0 },
+        seats: [],
+        method: null,
+        sort: 'rate',
+        region: '서울',
+        keyword: '',
+        timeFilter: 'all',
+      };
+
+      const byId = (id) => document.getElementById(id);
+      const pad = (value) => String(value).padStart(2, '0');
+      const getOrder = () => (state.mode === 'movie' ? ['movie', 'theater', 'time', 'seat', 'pay'] : ['theater', 'movie', 'time', 'seat', 'pay']);
+      const getMovie = () => MOVIES.find((movie) => movie.id === state.movieId);
+      const getTheater = () => THEATERS.find((theater) => theater.id === state.theaterId);
+      const getPeopleCount = () => Object.values(state.counts).reduce((sum, count) => sum + count, 0);
+      const formatPrice = (value) => `${value.toLocaleString('ko-KR')}원`;
+      // 등급 아이콘 파일이 있는 등급만 표시 (없으면 빈 문자열)
+      const getAgeIcon = (movie) => (AGE_LABELS[movie.age] ? `<img src="assets/images/badge_${movie.age}.png" alt="${AGE_LABELS[movie.age]}" />` : '');
+
+      function getSelectedDate() {
+        const date = new Date(BASE_DATE);
+        date.setDate(date.getDate() + state.dateOffset + state.dayIndex);
+        return date;
+      }
+
+      function getEndTime(start) {
+        const [hour, minute] = start.split(':').map(Number);
+        const total = hour * 60 + minute + RUNNING_MINUTES;
+        return `${pad(Math.floor(total / 60) % 24)}:${pad(total % 60)}`;
+      }
+
+      function getShowText() {
+        const date = getSelectedDate();
+        const day = `${pad(date.getFullYear() % 100)}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+        return state.show ? `${day} ${state.show.time}~${getEndTime(state.show.time)}  ${state.show.group.hall}` : day;
+      }
+
+      function resetFrom(stepName) {
+        if (stepName === 'time' || stepName === 'all') {
+          state.show = null;
+        }
+        state.seats = [];
+        state.counts = { adult: 0, teen: 0, senior: 0, disabled: 0 };
+        state.method = null;
+      }
+
+      function handleStepChange(stepName) {
+        state.step = stepName;
+        render();
+        window.scrollTo({ top: 0 });
+      }
+
+      window.addEventListener('resize', () => handleScreenFit());
+      window.addEventListener('load', () => handleScreenFit());
+
+      function handleNext() {
+        const order = getOrder();
+        handleStepChange(order[order.indexOf(state.step) + 1]);
+      }
+
+      // ---------- 공통: 단계 표시, 요약, 배경 ----------
+      function renderProgress() {
+        const order = getOrder();
+        const currentIndex = order.indexOf(state.step);
+        byId('booking_stepper').innerHTML = order
+          .map((name, index) => {
+            const info = STEP_INFO[name];
+            const isDone = index < currentIndex;
+            const stateClass = isDone ? 'is_done' : index === currentIndex ? 'is_current' : '';
+            const icon = isDone ? 'check' : info.icon;
+            return `<li class="${stateClass}"><button type="button" data-step-link="${name}" ${isDone ? '' : 'disabled'} ${index === currentIndex ? 'aria-current="step"' : ''}>
+              <span class="booking_stepper_icon"><img src="assets/icons/booking_step_${icon}.svg" alt="${isDone ? '완료' : ''}" /></span><span>${info.label}</span></button></li>`;
+          })
+          .join('');
+
+        const chips = [];
+        const addChip = (name, text) => {
+          if (order.indexOf(name) > currentIndex && !text) {
+            return;
+          }
+          chips.push(`<button type="button" class="booking_chip" data-step-link="${name}"><img src="assets/icons/booking_chip_${name}.svg" alt="${STEP_INFO[name].label}" />${text || ''}${
+            text ? '<img class="booking_chip_edit" src="assets/icons/booking_chip_edit.svg" alt="수정" />' : ''
+          }</button>`);
+        };
+        const movie = getMovie();
+        const theater = getTheater();
+        order.forEach((name) => {
+          if (name === 'movie') addChip('movie', movie ? movie.title : '');
+          if (name === 'theater') addChip('theater', theater ? theater.name : '');
+          if (name === 'time' && currentIndex >= order.indexOf('time')) addChip('time', getShowText());
+          if (name === 'seat' && currentIndex >= order.indexOf('seat')) addChip('seat', state.seats.join(', '));
+        });
+        byId('booking_summary').innerHTML = chips.join('');
+      }
+
+      function renderBanner() {
+        const movie = getMovie();
+        const banner = byId('booking_banner');
+        const isVisible = Boolean(movie) && state.step !== getOrder()[0];
+        banner.classList.toggle('is_hidden', !isVisible);
+        if (isVisible) {
+          const image = banner.querySelector('img');
+          const isMichael = movie.id === 'michael';
+          image.src = isMichael ? 'assets/images/booking/banner_michael.png' : movie.poster;
+          image.className = isMichael ? 'is_keyart' : 'is_poster';
+        }
+      }
+
+      // ---------- 영화 ----------
+      function renderMovies() {
+        const sorted = MOVIES.filter((movie) => !movie.isExtra).sort((a, b) => (b[state.sort] || 0) - (a[state.sort] || 0));
+        const selectedExtra = MOVIES.find((movie) => movie.isExtra && movie.id === state.movieId);
+        byId('booking_movies').innerHTML = (selectedExtra ? [...sorted, selectedExtra] : sorted)
+          .map((movie, index) => {
+            const meta = [
+              movie.rate ? `예매율 ${movie.rate}%` : '',
+              movie.rating ? `<img src="assets/icons/booking_star.svg" alt="평점" />${movie.rating}` : movie.dday ? `<span class="booking_movie_dday">${movie.dday}</span>` : '',
+            ]
+              .filter(Boolean)
+              .join('<i></i>');
+            const isSelected = movie.id === state.movieId;
+            return `<li><button type="button" class="booking_movie ${isSelected ? 'is_selected' : ''}" data-movie="${movie.id}" aria-pressed="${isSelected}">
+              <span class="booking_movie_poster"><img src="${movie.poster}" alt="${movie.title} 포스터" />${movie.isExtra ? '' : `<span class="booking_movie_rank">${index + 1}</span>`}
+              <span class="booking_movie_check"><span><img src="assets/icons/booking_select_check.svg" alt="선택됨" width="32" height="32" /></span></span></span>
+              <span class="booking_movie_title">${getAgeIcon(movie)}<span>${movie.title}</span></span>
+              <span class="booking_movie_meta">${meta}</span></button></li>`;
+          })
+          .join('');
+        document.querySelector('[data-step="movie"] [data-next]').classList.toggle('is_hidden', !state.movieId);
+      }
+
+      // ---------- 극장 ----------
+      function renderTheaters() {
+        byId('booking_regions').innerHTML = REGIONS.map(
+          ([name, count]) => `<button type="button" class="${name === state.region ? 'is_active' : ''}" data-region="${name}" aria-pressed="${name === state.region}">${name}(${count})</button>`
+        ).join('');
+        const keyword = state.keyword.trim();
+        const list = THEATERS.filter((theater) => (keyword ? theater.name.includes(keyword) : theater.region === state.region));
+        byId('booking_theaters').innerHTML = list
+          .map((theater) => {
+            const halls = theater.halls
+              .map((hall) => (HALL_LOGOS[hall] ? `<li><img src="${HALL_LOGOS[hall].src}" alt="${HALL_LOGOS[hall].alt}" /></li>` : `<li>${hall}</li>`))
+              .join('');
+            return `<li class="booking_theater"><div class="booking_theater_top"><div><h3>${theater.name}</h3>
+              <p class="booking_theater_line"><img src="assets/icons/booking_pin.svg" alt="주소" />${theater.address}</p>
+              <p class="booking_theater_line"><img src="assets/icons/booking_parking.svg" alt="" />주차가능</p>
+              <ul class="booking_theater_halls" aria-label="특별관">${halls}</ul></div>
+              <img class="booking_theater_map" src="${theater.map}" alt="${theater.name} 지도" /></div>
+              <button type="button" class="booking_theater_btn" data-theater="${theater.id}">상영시간표 보기</button></li>`;
+          })
+          .join('');
+        const empty = byId('booking_theater_empty');
+        empty.classList.toggle('is_hidden', list.length > 0);
+        empty.textContent = keyword ? `'${keyword}'에 해당하는 극장이 없습니다.` : `${state.region} 지역 극장 정보는 준비 중입니다.`;
+        byId('booking_theater_more').classList.toggle('is_hidden', list.length === 0);
+      }
+
+      // ---------- 시간 ----------
+      function renderTimes() {
+        const first = new Date(BASE_DATE);
+        first.setDate(first.getDate() + state.dateOffset);
+        byId('booking_month').textContent = `${first.getMonth() + 1}월`;
+        byId('booking_date_list').innerHTML = Array.from({ length: VISIBLE_DAYS }, (_, index) => {
+          const date = new Date(first);
+          date.setDate(date.getDate() + index);
+          const isToday = date.getTime() === BASE_DATE.getTime();
+          const isActive = index === state.dayIndex;
+          return `<li><button type="button" class="${isActive ? 'is_active' : ''}" data-day="${index}" aria-pressed="${isActive}">${isToday ? '오늘' : WEEKDAYS[date.getDay()]}<strong>${date.getDate()}</strong></button></li>`;
+        }).join('');
+        byId('booking_date_prev').disabled = state.dateOffset === 0;
+        byId('booking_date_next').disabled = state.dateOffset >= MAX_DATE_OFFSET;
+
+        const minHour = Number(state.timeFilter) || 0;
+        const groups = SHOW_GROUPS.map((group, groupIndex) => ({
+          group,
+          groupIndex,
+          times: group.times.filter(([time]) => Number(time.slice(0, 2)) >= minHour),
+        })).filter((entry) => entry.times.length > 0 && (state.timeFilter !== 'special' || entry.group.isSpecial));
+        byId('booking_showtimes').innerHTML = groups
+          .map(({ group, groupIndex, times }) => {
+            const buttons = times
+              .map(([time, remaining]) => {
+                const isSelected = Boolean(state.show) && state.show.group === group && state.show.time === time;
+                return `<li><button type="button" class="booking_showtime ${isSelected ? 'is_selected' : ''}" data-group="${groupIndex}" data-time="${time}" aria-pressed="${isSelected}">
+                  <strong>${time}</strong><span><em>${remaining}</em>/${group.total}</span><span>${group.hall}</span></button></li>`;
+              })
+              .join('');
+            return `<div><p class="booking_showtime_label">${group.label.join('<i>|</i>')}</p>${group.desc ? `<p class="booking_showtime_desc">${group.desc}</p>` : ''}
+              <ul class="booking_showtime_list">${buttons}</ul></div>`;
+          })
+          .join('');
+        byId('booking_showtime_empty').classList.toggle('is_hidden', groups.length > 0);
+        document.querySelector('[data-step="time"] [data-next]').classList.toggle('is_hidden', !state.show);
+      }
+
+      // ---------- 좌석 ----------
+      function renderSeats() {
+        const people = getPeopleCount();
+        byId('booking_counters').innerHTML = PEOPLE.map(
+          ([key, label]) => `<div>${label}<div class="booking_counter_box">
+            <button type="button" data-count="${key}" data-delta="-1" aria-label="${label} 줄이기" ${state.counts[key] === 0 ? 'disabled' : ''}>−</button>
+            <span aria-live="polite">${state.counts[key]}</span>
+            <button type="button" data-count="${key}" data-delta="1" aria-label="${label} 늘리기" ${people >= MAX_PEOPLE ? 'disabled' : ''}>+</button></div></div>`
+        ).join('');
+
+        const booked = state.show && state.show.remaining < state.show.group.total ? BOOKED_SEATS : [];
+        const isFull = state.seats.length >= people;
+        byId('booking_seats').innerHTML = SEAT_ROWS.map((row) => {
+          const seats = Array.from({ length: SEATS_PER_ROW }, (_, index) => {
+            const name = `${row}${index + 1}`;
+            const isSelected = state.seats.includes(name);
+            const isBooked = booked.includes(name);
+            const isBlocked = !isSelected && !isBooked && isFull;
+            const stateClass = isSelected ? 'is_selected' : isBooked ? 'is_booked' : isBlocked ? 'is_blocked' : 'is_available';
+            const stateText = isSelected ? '선택됨' : isBooked ? '예매 완료' : isBlocked ? '선택 불가' : '선택 가능';
+            return `<button type="button" class="booking_seat ${stateClass}" data-seat="${name}" aria-label="${name} ${stateText}" aria-pressed="${isSelected}" ${isBooked || isBlocked ? 'disabled' : ''}>${index + 1}</button>`;
+          }).join('');
+          return `<div class="booking_seat_row"><span>${row}</span>${seats}</div>`;
+        }).join('');
+
+        byId('booking_total_seats').textContent = state.seats.join(', ');
+        byId('booking_total_price').textContent = formatPrice(state.seats.length * SEAT_PRICE);
+        byId('booking_seat_done').disabled = people === 0 || state.seats.length !== people;
+        byId('booking_seat_hint').textContent =
+          people === 0 ? '인원을 먼저 선택해 주세요.' : state.seats.length < people ? `좌석을 ${people - state.seats.length}개 더 선택해 주세요.` : '';
+      }
+
+      // ---------- 결제 / 완료 ----------
+      function getInfoRows() {
+        const date = getSelectedDate();
+        const day = `${pad(date.getFullYear() % 100)}.${pad(date.getMonth() + 1)}.${pad(date.getDate())}(${WEEKDAYS[date.getDay()]})`;
+        return [
+          ['지점', getTheater().name],
+          ['상영관', state.show.group.hallFull],
+          ['상영 일시', `${day} | ${state.show.time}~${getEndTime(state.show.time)}`],
+          ['관람 인원', `${getPeopleCount()}명`],
+          ['좌석', state.seats.join(', ')],
+        ]
+          .map(([label, value]) => `<dt>${label}</dt><dd>${value}</dd>`)
+          .join('');
+      }
+
+      function renderPay() {
+        const movie = getMovie();
+        byId('booking_info_poster').src = movie.poster;
+        byId('booking_info_poster').alt = `${movie.title} 포스터`;
+        byId('booking_info_title').innerHTML = `${getAgeIcon(movie)}<span>${movie.title}(2D)</span>`;
+        byId('booking_info_list').innerHTML = getInfoRows();
+        byId('booking_pay_price').textContent = formatPrice(state.seats.length * SEAT_PRICE);
+        byId('booking_methods').querySelectorAll('button').forEach((button) => {
+          const isSelected = button.textContent === state.method;
+          button.classList.toggle('is_selected', isSelected);
+          button.setAttribute('aria-pressed', String(isSelected));
+        });
+      }
+
+      function renderDone() {
+        const movie = getMovie();
+        const visual = byId('booking_ticket_visual');
+        const isMichael = movie.id === 'michael';
+        visual.classList.toggle('is_michael', isMichael);
+        visual.style.backgroundImage = isMichael ? '' : `url('${movie.poster}')`;
+        visual.innerHTML = isMichael ? '<div class="booking_ticket_logo"><img src="assets/images/booking/ticket_logo.png" alt="Michael" /></div>' : '';
+        byId('booking_ticket_title').textContent = `${movie.title}(2D)`;
+        byId('booking_ticket_list').innerHTML = getInfoRows();
+      }
+
+      function render() {
+        const order = getOrder();
+        const isFlowStep = order.includes(state.step) && state.step !== 'pay';
+        document.querySelectorAll('.booking_step').forEach((section) => section.classList.toggle('is_active', section.dataset.step === state.step));
+        byId('booking_modes').classList.toggle('is_hidden', state.step !== order[0]);
+        byId('booking_back').classList.toggle('is_hidden', state.step === order[0] || state.step === 'done');
+        byId('booking_progress').classList.toggle('is_hidden', !isFlowStep);
+        document.querySelectorAll('.booking_mode').forEach((button) => {
+          const isActive = button.dataset.mode === state.mode;
+          button.classList.toggle('is_active', isActive);
+          button.setAttribute('aria-pressed', String(isActive));
+        });
+        renderBanner();
+        if (isFlowStep) renderProgress();
+        if (state.step === 'movie') renderMovies();
+        if (state.step === 'theater') renderTheaters();
+        if (state.step === 'time') renderTimes();
+        if (state.step === 'seat') renderSeats();
+        if (state.step === 'pay') renderPay();
+        if (state.step === 'done') renderDone();
+        handleScreenFit();
+      }
+
+      // 데스크톱에서는 스크롤 없이 한 화면에 들어오도록, 내용이 화면보다 길면 그만큼 축소
+      function handleScreenFit() {
+        const page = byId('booking_page');
+        const inner = page.querySelector('.booking_inner');
+        inner.style.zoom = 1;
+        if (window.innerWidth <= FIT_MIN_WIDTH) {
+          return;
+        }
+        const style = window.getComputedStyle(page);
+        const available = page.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+        inner.style.zoom = Math.min(1, available / inner.offsetHeight);
+      }
+
+      // ---------- 이벤트 (목록은 다시 그려지므로 상위 요소에서 한 번만 받음) ----------
+      byId('booking_page').addEventListener('click', (event) => {
+        const target = event.target.closest('button, a');
+        if (!target) {
+          return;
+        }
+        const data = target.dataset;
+        if (data.mode && data.mode !== state.mode) {
+          state.mode = data.mode;
+          state.movieId = null;
+          state.theaterId = null;
+          resetFrom('all');
+          handleStepChange(getOrder()[0]);
+        } else if (data.stepLink) {
+          handleStepChange(data.stepLink);
+        } else if ('next' in data) {
+          handleNext();
+        } else if (data.movie) {
+          state.movieId = state.movieId === data.movie ? null : data.movie;
+          resetFrom('time');
+          render();
+        } else if (data.sort) {
+          state.sort = data.sort;
+          document.querySelectorAll('#booking_sort button').forEach((button) => {
+            button.classList.toggle('is_active', button === target);
+            button.setAttribute('aria-pressed', String(button === target));
+          });
+          renderMovies();
+        } else if (data.region) {
+          state.region = data.region;
+          state.keyword = '';
+          byId('booking_theater_keyword').value = '';
+          renderTheaters();
+        } else if (data.theater) {
+          state.theaterId = data.theater;
+          resetFrom('time');
+          handleNext();
+        } else if (data.day) {
+          state.dayIndex = Number(data.day);
+          resetFrom('time');
+          render();
+        } else if (data.filter) {
+          state.timeFilter = data.filter;
+          document.querySelectorAll('#booking_time_filters button').forEach((button) => {
+            button.classList.toggle('is_active', button === target);
+            button.setAttribute('aria-pressed', String(button === target));
+          });
+          renderTimes();
+        } else if (data.time) {
+          const group = SHOW_GROUPS[Number(data.group)];
+          const remaining = group.times.find(([time]) => time === data.time)[1];
+          resetFrom('seat');
+          state.show = { group, time: data.time, remaining };
+          render();
+        } else if (data.count) {
+          const nextCount = state.counts[data.count] + Number(data.delta);
+          if (nextCount >= 0 && getPeopleCount() + Number(data.delta) <= MAX_PEOPLE) {
+            state.counts[data.count] = nextCount;
+            state.seats = state.seats.slice(0, getPeopleCount());
+            render();
+          }
+        } else if (data.seat) {
+          if (state.seats.includes(data.seat)) {
+            state.seats = state.seats.filter((seat) => seat !== data.seat);
+          } else if (state.seats.length < getPeopleCount()) {
+            state.seats = [...state.seats, data.seat].sort();
+          }
+          render();
+        }
+      });
+
+      byId('booking_back').addEventListener('click', () => {
+        const order = getOrder();
+        handleStepChange(order[order.indexOf(state.step) - 1]);
+      });
+
+      byId('booking_theater_keyword').addEventListener('input', (event) => {
+        state.keyword = event.target.value;
+        renderTheaters();
+      });
+
+      byId('booking_theater_more').addEventListener('click', (event) => {
+        event.currentTarget.disabled = true;
+        event.currentTarget.querySelector('span').textContent = '모든 극장을 불러왔습니다';
+      });
+
+      [['booking_date_prev', -7], ['booking_date_next', 7]].forEach(([id, delta]) => {
+        byId(id).addEventListener('click', () => {
+          state.dateOffset = Math.min(MAX_DATE_OFFSET, Math.max(0, state.dateOffset + delta));
+          resetFrom('time');
+          render();
+        });
+      });
+
+      byId('booking_seat_done').addEventListener('click', handleNext);
+
+      byId('booking_discounts').addEventListener('click', (event) => {
+        const button = event.target.closest('button');
+        if (button) {
+          button.setAttribute('aria-pressed', String(button.classList.toggle('is_selected')));
+        }
+      });
+
+      byId('booking_methods').addEventListener('click', (event) => {
+        const button = event.target.closest('button');
+        if (button) {
+          state.method = button.textContent;
+          byId('booking_pay_hint').textContent = '';
+          renderPay();
+        }
+      });
+
+      byId('booking_pay_done').addEventListener('click', () => {
+        if (!state.method) {
+          byId('booking_pay_hint').textContent = '결제수단을 선택해 주세요.';
+          return;
+        }
+        handleStepChange('done');
+      });
+
+      // 완료 화면: 마우스를 따라 티켓이 살짝 기울고 빛이 따라 움직임
+      const ticketTilt = byId('booking_ticket_tilt');
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        ticketTilt.addEventListener('pointermove', (event) => {
+          const rect = ticketTilt.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width - 0.5;
+          const y = (event.clientY - rect.top) / rect.height - 0.5;
+          ticketTilt.classList.add('is_tilting');
+          ticketTilt.style.setProperty('--tilt-x', `${(-y * 12).toFixed(2)}deg`);
+          ticketTilt.style.setProperty('--tilt-y', `${(x * 14).toFixed(2)}deg`);
+          ticketTilt.style.setProperty('--shine-x', `${(x * 180).toFixed(0)}%`);
+        });
+        ticketTilt.addEventListener('pointerleave', () => {
+          ticketTilt.classList.remove('is_tilting');
+          ticketTilt.style.setProperty('--tilt-x', '0deg');
+          ticketTilt.style.setProperty('--tilt-y', '0deg');
+        });
+      }
+
+      // 홈 화면이나 상세 페이지의 예매하기(?movie=영화 id)로 들어오면 그 영화를 선택한 채 극장 선택부터 시작
+      const presetMovie = new URLSearchParams(window.location.search).get('movie');
+      if (MOVIES.some((movie) => movie.id === presetMovie)) {
+        state.movieId = presetMovie;
+        state.step = 'theater';
+      }
+      render();
+    </script>
+  </body>
+</html>

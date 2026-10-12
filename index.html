@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Nanum+Gothic:wght@400;700;800&family=DM+Serif+Text:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Nanum+Gothic:wght@400;700;800&family=DM+Serif+Text:ital@0;1&family=Roboto:wght@400;500&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -18,7 +18,7 @@
       <div class="header_layout">
         <a class="logo" href="#"><img src="assets/images/Logo.png" alt="LOTTE CINEMA" width="301" height="49" /></a>
         <nav class="main_nav" aria-label="메인 메뉴">
-          <a href="#quick_menu">예매</a>
+          <a href="booking.html">예매</a>
           <a href="#promo_section">영화</a>
           <a href="#special_section">영화관</a>
           <a href="#event_section">이벤트</a>
@@ -68,7 +68,7 @@
                 <span class="info_count" id="hero_audience">42,831 명 예매중</span>
               </div>
               <div class="hero_cta">
-                <a class="button_book" href="#quick_menu">
+                <a class="button_book" id="hero_book" href="booking.html">
                   <img src="assets/icons/icon_ticket.svg" alt="" width="29" height="29" />
                   예매하기
                 </a>
@@ -85,6 +85,7 @@
                   class="rank_item is_active"
                   tabindex="0"
                   data-number="1"
+                  data-movie="gunche"
                   data-title="군체"
                   data-subtitle="새로운 종의 탄생"
                   data-age="15세 이상"
@@ -108,6 +109,7 @@
                   class="rank_item"
                   tabindex="0"
                   data-number="2"
+                  data-movie="michael"
                   data-title="마이클"
                   data-subtitle="전설이 된 황제, 그 위대한 시작"
                   data-age="12세 이상"
@@ -116,6 +118,7 @@
                   data-percent="15.1%"
                   data-audience="162.8만 명 예매중"
                   data-bg="assets/images/hero_bg_michael.png"
+                  data-href="movie.html"
                 >
                   <span class="rank_number">2</span>
                   <div class="rank_poster_box">
@@ -131,6 +134,7 @@
                   class="rank_item"
                   tabindex="0"
                   data-number="3"
+                  data-movie="hailmary"
                   data-title="프로젝트 헤일메리"
                   data-subtitle="종말 위기에 놓인 지구, 인류의 운명을 건 단 하나의 미션"
                   data-age="12세 이상"
@@ -154,6 +158,7 @@
                   class="rank_item"
                   tabindex="0"
                   data-number="4"
+                  data-movie="prada"
                   data-title="악마는 프라다를 입는다 2"
                   data-subtitle="전 세계를 열광시킨 '런웨이' 전설들의 귀환"
                   data-age="12세 이상"
@@ -177,6 +182,7 @@
                   class="rank_item"
                   tabindex="0"
                   data-number="5"
+                  data-movie="supermario"
                   data-title="슈퍼마리오갤럭시"
                   data-subtitle="새로운 친구, 새로운 미션, 새로운 세계 레벨업 된 모험"
                   data-age="전체 관람가"
@@ -203,7 +209,7 @@
       </section>
 
       <section class="quick_menu_section" id="quick_menu">
-        <form class="quick_menu_card">
+        <form class="quick_menu_card" action="booking.html">
           <span class="quick_menu_label">
             <img src="assets/icons/icon_quickmenu.svg" alt="" width="34" height="34" />
             빠른예매
@@ -211,11 +217,11 @@
           <span class="quick_menu_divider" aria-hidden="true"></span>
           <label class="quick_menu_select">
             <span class="sr_only">영화 선택</span>
-            <select>
-              <option>영화 선택</option>
-              <option>군체</option>
-              <option>마이클</option>
-              <option>프로젝트 헤일메리</option>
+            <select name="movie">
+              <option value="">영화 선택</option>
+              <option value="gunche">군체</option>
+              <option value="michael">마이클</option>
+              <option value="hailmary">프로젝트 헤일메리</option>
             </select>
           </label>
           <label class="quick_menu_select">
@@ -256,36 +262,88 @@
           <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
         </div>
         <div class="poster_strip">
-          <article class="poster_card">
+          <article class="poster_card" tabindex="0">
             <img class="poster_visual" src="assets/images/pick_beginagain.jpeg" alt="비긴어게인 포스터" />
             <img class="pick_badge" src="assets/images/badge_lottepick.png" alt="롯시픽" />
             <div class="poster_title">
               <p class="poster_genre">드라마</p>
               <h3>비긴어게인</h3>
             </div>
+            <div class="poster_detail">
+              <p class="poster_detail_title"><img class="poster_detail_age" src="assets/images/badge_15.png" alt="15세 이상" /><span>비긴어게인</span></p>
+              <p class="poster_detail_info">
+                <span><img src="assets/icons/icon_star.svg" alt="평점" width="16" height="16" /><strong>9.1</strong><em>/ 10</em></span>
+                <span><img src="assets/icons/icon_clock.svg" alt="상영시간" width="17" height="17" /><strong>104분</strong></span>
+                <span><strong>375만</strong>명 예매</span>
+              </p>
+              <p class="poster_detail_text"><strong>“다시 시작해, 너를 빛나게 할 노래를!”</strong>싱어송라이터인 ‘그레타’(키이라 나이틀리)는 남자친구 ‘데이브’(애덤 리바인)가 메이저 음반회사와 계약을 하게 되면서 뉴욕으로 오게 된다.</p>
+              <div class="poster_detail_buttons">
+                <a class="poster_detail_book" href="booking.html?movie=beginagain">예매하기</a>
+                <button type="button" class="poster_detail_more">상세정보</button>
+              </div>
+            </div>
           </article>
-          <article class="poster_card">
+          <article class="poster_card" tabindex="0">
             <img class="poster_visual" src="assets/images/pick_doraemon.jpeg" alt="극장판 도라에몽: 신 진구의 해저비밀성 포스터" />
             <img class="pick_badge" src="assets/images/badge_lottepick.png" alt="롯시픽" />
             <div class="poster_title">
               <p class="poster_genre">애니메이션</p>
               <h3>도라에몽</h3>
             </div>
+            <div class="poster_detail">
+              <p class="poster_detail_title"><img class="poster_detail_age" src="assets/images/badge_all.png" alt="전체 관람가" /><span>극장판 도라에몽: 신 진구의 해저비밀성</span></p>
+              <p class="poster_detail_info">
+                <span><img src="assets/icons/icon_star.svg" alt="평점" width="16" height="16" /><strong>8.67</strong><em>/ 10</em></span>
+                <span><img src="assets/icons/icon_clock.svg" alt="상영시간" width="17" height="17" /><strong>101분</strong></span>
+                <span><strong>5.7만</strong>명 예매</span>
+              </p>
+              <p class="poster_detail_text"><strong>이번 여름방학은 바닷속 캠핑이다! 숨이 멎을 듯한 놀라움이 가득한 두근두근 해저 대모험!</strong>여름방학 캠핑 장소를 두고 의견이 갈린 진구와 친구들은 도라에몽의 제안으로 바다 한가운데로 여행을 떠나기로 한다.</p>
+              <div class="poster_detail_buttons">
+                <a class="poster_detail_book" href="booking.html?movie=doraemon">예매하기</a>
+                <button type="button" class="poster_detail_more">상세정보</button>
+              </div>
+            </div>
           </article>
-          <article class="poster_card">
+          <article class="poster_card" tabindex="0">
             <img class="poster_visual" src="assets/images/pick_blazetheway.jpeg" alt="2026 &amp;TEAM CONCERT TOUR BLAZE THE WAY Live Viewing 포스터" />
             <img class="pick_badge" src="assets/images/badge_lottepick.png" alt="롯시픽" />
             <div class="poster_title">
               <p class="poster_genre">콘서트 실황</p>
               <h3>2026 &amp;TEAM CONCERT TOUR 'BLAZE THE WAY' Live Viewing</h3>
             </div>
+            <div class="poster_detail">
+              <p class="poster_detail_title"><img class="poster_detail_age" src="assets/images/badge_all.png" alt="전체 관람가" /><span>2026 &amp;TEAM CONCERT TOUR 'BLAZE THE WAY' Live Viewing</span></p>
+              <p class="poster_detail_info">
+                <span><img src="assets/icons/icon_star.svg" alt="평점" width="16" height="16" /><strong>9.1</strong><em>/ 10</em></span>
+                <span><img src="assets/icons/icon_clock.svg" alt="상영시간" width="17" height="17" /><strong>255분</strong></span>
+                <span class="poster_detail_dday">D - 12</span>
+              </p>
+              <p class="poster_detail_text"><strong>극장에서 만나는 킥플립, 스크린을 넘어선 특별한 팬 경험!</strong>영화를 기다리는 순간까지 특별하게. 롯데시네마에서 펼쳐지는 킥플립(KickFlip) 브랜드 프로모션으로 아티스트의 매력을 더욱 가까이에서 만나보세요.</p>
+              <div class="poster_detail_buttons">
+                <a class="poster_detail_book" href="booking.html?movie=blazetheway">예매하기</a>
+                <button type="button" class="poster_detail_more">상세정보</button>
+              </div>
+            </div>
           </article>
-          <article class="poster_card">
+          <article class="poster_card" tabindex="0">
             <img class="poster_visual" src="assets/images/pick_scarymovie.jpeg" alt="무서운영화 포스터" />
             <img class="pick_badge" src="assets/images/badge_lottepick.png" alt="롯시픽" />
             <div class="poster_title">
               <p class="poster_genre">코미디</p>
               <h3>무서운영화</h3>
+            </div>
+            <div class="poster_detail">
+              <p class="poster_detail_title"><span class="poster_detail_age poster_detail_age--19"><img src="assets/images/age_sprite.png" alt="청소년 관람불가" /></span><span>무서운 영화</span></p>
+              <p class="poster_detail_info">
+                <span><img src="assets/icons/icon_star.svg" alt="평점" width="16" height="16" /><strong>7.21</strong><em>/ 10</em></span>
+                <span><img src="assets/icons/icon_clock.svg" alt="상영시간" width="17" height="17" /><strong>95분</strong></span>
+                <span><strong>3,370</strong>명 예매</span>
+              </p>
+              <p class="poster_detail_text"><strong>“어떻게 우리 없이 후속편을 찍으려고 해?!”</strong>수상쩍게도 낯익은 ‘고스트 페이스’를 따돌린지 어언 26년 만에, ‘핵심 4인방’은 다시 살인마의 표적이 된다.</p>
+              <div class="poster_detail_buttons">
+                <a class="poster_detail_book" href="booking.html?movie=scarymovie">예매하기</a>
+                <button type="button" class="poster_detail_more">상세정보</button>
+              </div>
             </div>
           </article>
         </div>
@@ -302,8 +360,11 @@
         </div>
         <div class="mood_scroll">
           <div class="mood_slide is_active">
-            <div class="mood_progress" aria-hidden="true">
-              <span class="is_current"></span><span></span><span></span><span></span>
+            <div class="mood_progress">
+              <button type="button" class="is_current" aria-label="1번 추천 보기"></button>
+              <button type="button" aria-label="2번 추천 보기"></button>
+              <button type="button" aria-label="3번 추천 보기"></button>
+              <button type="button" aria-label="4번 추천 보기"></button>
             </div>
             <div class="mood_slide_copy">
               <p class="mood_slide_label">장르별 추천</p>
@@ -323,8 +384,11 @@
             </div>
           </div>
           <div class="mood_slide">
-            <div class="mood_progress" aria-hidden="true">
-              <span></span><span class="is_current"></span><span></span><span></span>
+            <div class="mood_progress">
+              <button type="button" aria-label="1번 추천 보기"></button>
+              <button type="button" class="is_current" aria-label="2번 추천 보기"></button>
+              <button type="button" aria-label="3번 추천 보기"></button>
+              <button type="button" aria-label="4번 추천 보기"></button>
             </div>
             <div class="mood_slide_copy">
               <p class="mood_slide_label">별점순 추천</p>
@@ -344,8 +408,11 @@
             </div>
           </div>
           <div class="mood_slide">
-            <div class="mood_progress" aria-hidden="true">
-              <span></span><span></span><span class="is_current"></span><span></span>
+            <div class="mood_progress">
+              <button type="button" aria-label="1번 추천 보기"></button>
+              <button type="button" aria-label="2번 추천 보기"></button>
+              <button type="button" class="is_current" aria-label="3번 추천 보기"></button>
+              <button type="button" aria-label="4번 추천 보기"></button>
             </div>
             <div class="mood_slide_copy">
               <p class="mood_slide_label">특별관 추천작</p>
@@ -365,8 +432,11 @@
             </div>
           </div>
           <div class="mood_slide">
-            <div class="mood_progress" aria-hidden="true">
-              <span></span><span></span><span></span><span class="is_current"></span>
+            <div class="mood_progress">
+              <button type="button" aria-label="1번 추천 보기"></button>
+              <button type="button" aria-label="2번 추천 보기"></button>
+              <button type="button" aria-label="3번 추천 보기"></button>
+              <button type="button" class="is_current" aria-label="4번 추천 보기"></button>
             </div>
             <div class="mood_slide_copy">
               <p class="mood_slide_label">전문가 PICK</p>
@@ -396,7 +466,7 @@
         <p class="promo_eyebrow">기대되는 영화를 미리 만나보세요</p>
         <div class="promo_scroll">
           <div class="promo_slide">
-            <img class="promo_logo" src="assets/images/promo/promo_logo1.png" alt="스파이더맨: 브랜드 뉴 데이" />
+            <div class="promo_logo"><img src="assets/images/promo/promo_logo1.png" alt="스파이더맨: 브랜드 뉴 데이" /></div>
             <div class="promo_copy">
               <h2>스파이더맨: 브랜드 뉴 데이</h2>
               <p>
@@ -410,26 +480,26 @@
                 올여름, 극장가를 강타할 최고 블록버스터의 귀환! '스파이더맨'의 새로운 날을 확인하라!
               </p>
               <div class="promo_buttons">
-                <a class="promo_btn_book" href="#quick_menu">예매하기</a>
+                <a class="promo_btn_book" href="booking.html?movie=spiderman">예매하기</a>
                 <a class="promo_btn_details" href="#">상세정보</a>
               </div>
             </div>
             <video class="promo_visual" src="assets/images/promo/mv1.mp4" autoplay muted loop playsinline alt="스파이더맨: 브랜드 뉴 데이 예고 영상" ></video>
           </div>
           <div class="promo_slide">
-            <img class="promo_logo" src="assets/images/promo/promo_logo2.png" alt="미니언즈 &amp; 몬스터즈" />
+            <div class="promo_logo"><img src="assets/images/promo/promo_logo2.png" alt="미니언즈 &amp; 몬스터즈" /></div>
             <div class="promo_copy">
               <h2>미니언즈 &amp; 몬스터즈</h2>
               <p>데뷔작으로 천만 관객 거장 감독이 되고 싶은 미니언즈 '제임스', '헨리', '에드'의 몬스터를 찾아 떠나는 어드벤처!</p>
               <div class="promo_buttons">
-                <a class="promo_btn_book" href="#quick_menu">예매하기</a>
+                <a class="promo_btn_book" href="booking.html?movie=minions">예매하기</a>
                 <a class="promo_btn_details" href="#">상세정보</a>
               </div>
             </div>
             <video class="promo_visual" src="assets/images/promo/mv2.mp4" autoplay muted loop playsinline alt="미니언즈 &amp; 몬스터즈 예고 영상" ></video>
           </div>
           <div class="promo_slide">
-            <img class="promo_logo" src="assets/images/promo/promo_logo3.png" alt="토이 스토리 5" />
+            <div class="promo_logo"><img src="assets/images/promo/promo_logo3.png" alt="토이 스토리 5" /></div>
             <div class="promo_copy">
               <h2>토이 스토리 5</h2>
               <p>
@@ -440,14 +510,14 @@
                 장난감 VS 전자기기, 새로운 세상 속 멈춰있던 장난감들이 다시 움직이기 시작한다!
               </p>
               <div class="promo_buttons">
-                <a class="promo_btn_book" href="#quick_menu">예매하기</a>
+                <a class="promo_btn_book" href="booking.html?movie=toystory">예매하기</a>
                 <a class="promo_btn_details" href="#">상세정보</a>
               </div>
             </div>
             <video class="promo_visual" src="assets/images/promo/mv3.mp4" autoplay muted loop playsinline alt="토이 스토리 5 예고 영상" ></video>
           </div>
           <div class="promo_slide">
-            <img class="promo_logo" src="assets/images/promo/promo_logo4.png" alt="와일드 씽" />
+            <div class="promo_logo"><img src="assets/images/promo/promo_logo4.png" alt="와일드 씽" /></div>
             <div class="promo_copy">
               <h2>와일드 씽</h2>
               <p>
@@ -458,15 +528,18 @@
                 "전쟁이 터져도, 오늘 우리는 무대에 서는 거야!"
               </p>
               <div class="promo_buttons">
-                <a class="promo_btn_book" href="#quick_menu">예매하기</a>
+                <a class="promo_btn_book" href="booking.html?movie=wildthing">예매하기</a>
                 <a class="promo_btn_details" href="#">상세정보</a>
               </div>
             </div>
             <video class="promo_visual" src="assets/images/promo/mv4.mp4" autoplay muted loop playsinline alt="와일드 씽 예고 영상"></video>
           </div>
         </div>
-        <div class="promo_pagination" aria-hidden="true">
-          <span class="is_current"></span><span></span><span></span><span></span>
+        <div class="promo_pagination">
+          <button type="button" class="is_current" aria-label="1번 영화 보기"></button>
+          <button type="button" aria-label="2번 영화 보기"></button>
+          <button type="button" aria-label="3번 영화 보기"></button>
+          <button type="button" aria-label="4번 영화 보기"></button>
         </div>
       </section>
 
@@ -494,58 +567,208 @@
           </button>
         </div>
         <div class="special_cards is_active" data-tab-panel="immersive">
-          <article class="special_card">
+          <article class="special_card" tabindex="0">
             <img src="assets/images/special/card_superled.jpg" alt="수퍼 LED 상영관" />
             <span class="special_badge">수퍼 LED</span>
+            <div class="special_detail">
+              <img class="special_detail_logo" src="assets/images/special/logo_superled.png" alt="수퍼 LED" width="161" height="48" />
+              <p class="special_detail_tagline">압도적 컬러를 만나다</p>
+              <p class="special_detail_en"><small>The</small><strong>Largest</strong></p>
+              <p class="special_detail_desc">국내 최초, 최대의 LED 스크린으로 영사기 없는 상영관</p>
+              <ul class="special_detail_list">
+                <li>일반 영사기 대비 10배의 밝기와 무한대의 명암비로 극강의 화질 선사</li>
+                <li>스크린 전 방향 균일한 밝기 유지</li>
+                <li>하만 JBL 오디오 시스템</li>
+              </ul>
+              <button type="button" class="special_detail_btn">
+                상영 중인 영화 보기
+                <img src="assets/icons/icon_arrow_up_right.svg" alt="" width="14" height="14" />
+              </button>
+            </div>
           </article>
-          <article class="special_card">
+          <article class="special_card" tabindex="0">
             <img src="assets/images/special/card_superplex.jpg" alt="수퍼플렉스 상영관" />
             <span class="special_badge">수퍼플렉스</span>
+            <div class="special_detail">
+              <img class="special_detail_logo" src="assets/images/special/logo_superplex.png" alt="수퍼플렉스" width="420" height="46" />
+              <p class="special_detail_tagline">압도적 경험을 만나다</p>
+              <p class="special_detail_en"><strong>SCREEN</strong><small>ULTRA WIDE SCREEN</small></p>
+              <p class="special_detail_desc">국내 최대 스케일의 스크린에 더욱 선명하고 압도적인 화질로 영화의 현실감을 극대화합니다.</p>
+              <ul class="special_detail_list">
+                <li>4K Dual Laser / Shaker 시스템</li>
+                <li>DOLBY 최신 사양의 사운드 시스템으로 다이나믹한 공간 음향을 구현하여 영화에 오롯이 빠져드는 경험을 선사</li>
+                <li>모든 좌석에서 영화를 완벽하게 만나기 위해 설계된 Zoning, 몰입 환경의 극대화를 위한 최상의 편안함을 제공</li>
+              </ul>
+              <button type="button" class="special_detail_btn">
+                상영 중인 영화 보기
+                <img src="assets/icons/icon_arrow_up_right.svg" alt="" width="14" height="14" />
+              </button>
+            </div>
           </article>
-          <article class="special_card">
+          <article class="special_card" tabindex="0">
             <img src="assets/images/special/card_gwangeumcinema.jpg" alt="광음시네마 상영관" />
             <span class="special_badge">광음시네마</span>
+            <div class="special_detail">
+              <p class="special_detail_name">광음 시네마</p>
+              <p class="special_detail_tagline">폭발적 사운드를 만나다</p>
+              <p class="special_detail_en"><small>The</small><strong>Largest</strong></p>
+              <p class="special_detail_desc">초 극저음 우퍼와 음압 증폭 사운드로 더 확장된 음장감을 즐길 수 있는 상영관</p>
+              <ul class="special_detail_list">
+                <li>몰입감을 높이는 입체 사운드</li>
+                <li>압도적인 4K RGB 레이저 화질</li>
+                <li>더 깊어지는 시네마 경험</li>
+              </ul>
+              <button type="button" class="special_detail_btn">
+                상영 중인 영화 보기
+                <img src="assets/icons/icon_arrow_up_right.svg" alt="" width="14" height="14" />
+              </button>
+            </div>
           </article>
-          <article class="special_card">
+          <article class="special_card" tabindex="0">
             <img src="assets/images/special/card_gwangeumled.jpg" alt="광음 LED 상영관" />
             <span class="special_badge">광음 LED</span>
+            <div class="special_detail">
+              <p class="special_detail_name">광음 LED</p>
+              <p class="special_detail_tagline">빛과 소리의 완벽한 조화</p>
+              <p class="special_detail_en"><small>The</small><strong>Colorful</strong></p>
+              <p class="special_detail_desc">광음LED는 제작자가 의도한 색감과 질감까지 그대로 담아내 압도적인 시네마 경험을 선사</p>
+              <ul class="special_detail_list">
+                <li>삼성 Onyx 최신 스크린으로 4K 해상도 뿐만 아니라 DCI-P3 100%의 정확한 색상을 구현</li>
+                <li>완벽에 가까운 블랙, 무한한 명암비로 어둠속 디테일까지 명확하게 표현하며, 균일한 밝기를 유지</li>
+                <li>광음 스피커의 결합으로 눈 앞에서 대화를 나누는 듯한 몰입감 제공</li>
+              </ul>
+              <button type="button" class="special_detail_btn">
+                상영 중인 영화 보기
+                <img src="assets/icons/icon_arrow_up_right.svg" alt="" width="14" height="14" />
+              </button>
+            </div>
           </article>
         </div>
-        <div class="special_cards special_cards--pair" data-tab-panel="companion">
-          <article class="special_card">
+        <div class="special_cards" data-tab-panel="companion">
+          <article class="special_card" tabindex="0">
             <img src="assets/images/special/card_cinefamily.png" alt="씨네패밀리 상영관" />
             <span class="special_badge">씨네패밀리</span>
+            <div class="special_detail">
+              <img class="special_detail_logo" src="assets/images/special/logo_cinefamily.png" alt="씨네패밀리" width="142" height="48" />
+              <p class="special_detail_tagline">사랑하는 사람들과 함께 편안하고 안전하게 즐기는 프라이빗한 무비 피크닉</p>
+              <p class="special_detail_en"><small>Private</small><strong>Booth</strong></p>
+              <p class="special_detail_desc">4~6인 전용 프라이빗한 우리만의 공간</p>
+              <ul class="special_detail_list">
+                <li>영화관 속에 별도로 마련된 독립형 부스에서 방해받지 않고 영화를 관람할 수 있습니다.</li>
+                <li>전 좌석 리클라이너와 웰컴 드링크까지 내 집 같은 편안하고 안락한 서비스를 제공</li>
+                <li>프라이빗 부스 전용 JBL 5.1ch 사운드 시스템을 도입</li>
+              </ul>
+              <button type="button" class="special_detail_btn">
+                상영 중인 영화 보기
+                <img src="assets/icons/icon_arrow_up_right.svg" alt="" width="14" height="14" />
+              </button>
+            </div>
           </article>
-          <article class="special_card">
+          <article class="special_card special_card--dim_70" tabindex="0">
             <img src="assets/images/special/card_cinecouple.png" alt="씨네커플 상영관" />
             <span class="special_badge">씨네커플</span>
+            <div class="special_detail">
+              <img class="special_detail_logo" src="assets/images/special/logo_cinecouple.png" alt="씨네커플" width="153" height="48" />
+              <p class="special_detail_tagline">연인을 위한 두근두근 커플석</p>
+              <p class="special_detail_en"><small>Private</small><strong>Space</strong></p>
+              <p class="special_detail_desc">데이트를 위한 최고의 선택</p>
+              <ul class="special_detail_list">
+                <li>넓은 독립형 좌석으로 로맨틱한 영화관람</li>
+                <li>눈치보지 않고 둘만의 오붓한 시간</li>
+                <li>둘만의 프라이버시를 지켜드립니다.</li>
+              </ul>
+              <button type="button" class="special_detail_btn">
+                상영 중인 영화 보기
+                <img src="assets/icons/icon_arrow_up_right.svg" alt="" width="14" height="14" />
+              </button>
+            </div>
           </article>
         </div>
-        <div class="special_cards special_cards--pair" data-tab-panel="premium">
-          <article class="special_card">
+        <div class="special_cards" data-tab-panel="premium">
+          <article class="special_card special_card--dim_40" tabindex="0">
             <img src="assets/images/special/card_charlotte.png" alt="샤롯데 상영관" />
             <span class="special_badge">샤롯데</span>
+            <div class="special_detail">
+              <img class="special_detail_logo" src="assets/images/special/logo_charlotte.png" alt="샤롯데" width="303" height="46" />
+              <p class="special_detail_tagline">단 하나의 프리미엄 상영관</p>
+              <p class="special_detail_en"><small>The</small><strong>First Class</strong></p>
+              <p class="special_detail_desc">최상의 관람 환경</p>
+              <ul class="special_detail_list">
+                <li>온 몸을 감싸는 최고급 가죽시트와 각도 조절이 가능한 리클라이너 체어</li>
+                <li>개인 호출 벨을 통해 영화 감상 중 언제든지 서비스를 요청 가능</li>
+                <li>웰컴 음료, 개인 담요와 물품 보관까지 프리미엄 서비스</li>
+              </ul>
+              <button type="button" class="special_detail_btn">
+                상영 중인 영화 보기
+                <img src="assets/icons/icon_arrow_up_right.svg" alt="" width="14" height="14" />
+              </button>
+            </div>
           </article>
-          <article class="special_card">
+          <article class="special_card special_card--dim_60" tabindex="0">
             <img src="assets/images/special/card_recliner.png" alt="리클라이너 상영관" />
             <span class="special_badge">리클라이너</span>
+            <div class="special_detail">
+              <p class="special_detail_name special_detail_name--en">Recliner</p>
+              <p class="special_detail_tagline">영화에 편안함을 더하다</p>
+              <p class="special_detail_en"><small>The</small><strong>Recliner</strong></p>
+              <p class="special_detail_desc">각도 조절이 가능한 리클라이너</p>
+              <ul class="special_detail_list">
+                <li>넓고 편안한 가죽 소파와 넓은 좌석 간격, 영화를 더욱 특별하게 즐길 수 있는 방법</li>
+                <li>자동 버튼으로 손쉽게, 내가 원하는 높낮이로 영화에 몰입</li>
+                <li>내몸에 맞춘듯한 리클라이너 소파로보다 편안하고 아늑한 시간을 느껴보세요.</li>
+              </ul>
+              <button type="button" class="special_detail_btn">
+                상영 중인 영화 보기
+                <img src="assets/icons/icon_arrow_up_right.svg" alt="" width="14" height="14" />
+              </button>
+            </div>
           </article>
         </div>
-        <div class="special_cards special_cards--pair" data-tab-panel="experience">
-          <article class="special_card">
+        <div class="special_cards" data-tab-panel="experience">
+          <article class="special_card special_card--dim_60" tabindex="0">
             <img src="assets/images/special/card_supermx4d.jpeg" alt="수퍼 MX4D 상영관" />
             <span class="special_badge">수퍼 MX4D</span>
+            <div class="special_detail">
+              <img class="special_detail_logo" src="assets/images/special/logo_supermx4d.png" alt="수퍼 MX4D" width="190" height="48" />
+              <p class="special_detail_tagline">압도적 4D를 만나다</p>
+              <p class="special_detail_en"><strong>SEE<br />FEEL<br />BELIEVE</strong></p>
+              <p class="special_detail_desc">모든 감각을 자극하는 영화적 체험!</p>
+              <ul class="special_detail_list">
+                <li>역동적인 MX4D 좌석 모션</li>
+                <li>생생하게 전달되는 15가지 효과</li>
+                <li>영화 속 스토리를 따라 살아 숨쉬는 수퍼 MX4D영화관을 만나보세요.</li>
+              </ul>
+              <button type="button" class="special_detail_btn">
+                상영 중인 영화 보기
+                <img src="assets/icons/icon_arrow_up_right.svg" alt="" width="14" height="14" />
+              </button>
+            </div>
           </article>
-          <article class="special_card">
+          <article class="special_card special_card--dim_60" tabindex="0">
             <img src="assets/images/special/card_super4d.png" alt="수퍼 4D 상영관" />
             <span class="special_badge">수퍼 4D</span>
+            <div class="special_detail">
+              <img class="special_detail_logo" src="assets/images/special/logo_super4d.png" alt="수퍼 4D" width="191" height="48" />
+              <p class="special_detail_tagline">다이나믹한 오감 만족 체험</p>
+              <p class="special_detail_en"><small>Feel The</small><strong>Movie</strong></p>
+              <p class="special_detail_desc">온 몸으로 영화를 느끼다!</p>
+              <ul class="special_detail_list">
+                <li>영화 속 장면에 따라 좌석에 직접 느껴지는 바이브레이션, 모션 효과</li>
+                <li>바람, 빛, 버블, 안개, 향기, 물 등 다양한 특수 효과가 오감을 자극하며 영화 속 장면에 더욱 몰입</li>
+                <li>4D 효과는 극장별 / 영화별로 상이할 수 있습니다.</li>
+              </ul>
+              <button type="button" class="special_detail_btn">
+                상영 중인 영화 보기
+                <img src="assets/icons/icon_arrow_up_right.svg" alt="" width="14" height="14" />
+              </button>
+            </div>
           </article>
         </div>
       </section>
 
       <section class="goods_section" id="goods_section">
         <div class="goods_header">
-          <p class="goods_title"><span>CINEMA</span> GOODS</p>
+          <p class="goods_title">CINEMA <span>GOODS</span></p>
           <p class="goods_subtitle">영화를 소장하는 또 하나의 방법.</p>
         </div>
         <div class="goods_content">
@@ -580,6 +803,7 @@
 
       <section class="sns_section">
         <h2 class="sns_title">지금 뜨는 영화 이야기</h2>
+        <div class="sns_row">
         <div class="sns_grid">
           <article class="sns_card">
             <img class="sns_visual" src="assets/images/sns/sns_1.png" alt="혼밥 Lv. 마스터" />
@@ -609,6 +833,10 @@
               <p><strong>유튜브</strong><span>인사이드 아웃2와 랜덤스퀘어의 만남, 감정 테마파크 🎠 #롯데시네마 #인사이드아웃2 #랜덤스퀘어</span></p>
             </div>
           </article>
+        </div>
+        <button type="button" class="icon_button" id="sns_next_btn" aria-label="다음 영상">
+          <img src="assets/icons/icon_chevron_right.svg" alt="" />
+        </button>
         </div>
       </section>
 
@@ -707,10 +935,37 @@
         let moodSlideIndex = 0;
         let isMoodTransitioning = false;
 
+        function handleMoodSlideChange(nextIndex) {
+          moodSlides[moodSlideIndex].classList.remove('is_active');
+          moodSlideIndex = nextIndex;
+          moodSlides[moodSlideIndex].classList.add('is_active');
+          if (!shouldReduceMotion) {
+            moodSlides[moodSlideIndex].animate([{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'ease-out' });
+          }
+        }
+
+        moodSlides.forEach((slide) => {
+          slide.querySelectorAll('.mood_progress button').forEach((button, index) => {
+            button.addEventListener('click', () => {
+              handleMoodSlideChange(index);
+              // 누른 버튼이 있던 슬라이드가 숨겨지므로 새 슬라이드의 같은 버튼으로 포커스를 옮김
+              moodSlides[index].querySelectorAll('.mood_progress button')[index].focus();
+            });
+          });
+        });
+
         moodSection.addEventListener(
           'wheel',
           (event) => {
             if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+              return;
+            }
+            // 슬라이드 영역이 화면에 다 들어왔을 때만 휠로 전환하고, 그 전후에는 페이지가 평소대로 스크롤됨
+            const slideRect = moodScroll.getBoundingClientRect();
+            const isSlideFullyVisible = slideRect.top >= 0 && slideRect.bottom <= window.innerHeight;
+            // 화면이 슬라이드보다 낮아 다 들어올 수 없는 경우에는 화면을 가득 채웠을 때 전환
+            const isSlideCoveringView = slideRect.height > window.innerHeight && slideRect.top <= 0 && slideRect.bottom >= window.innerHeight;
+            if (!isSlideFullyVisible && !isSlideCoveringView) {
               return;
             }
             const isForward = event.deltaY > 0;
@@ -723,9 +978,7 @@
             if (isMoodTransitioning) {
               return;
             }
-            moodSlides[moodSlideIndex].classList.remove('is_active');
-            moodSlideIndex += isForward ? 1 : -1;
-            moodSlides[moodSlideIndex].classList.add('is_active');
+            handleMoodSlideChange(moodSlideIndex + (isForward ? 1 : -1));
             isMoodTransitioning = true;
             window.setTimeout(() => {
               isMoodTransitioning = false;
@@ -733,6 +986,26 @@
           },
           { passive: false }
         );
+      }
+
+      const promoScroll = document.querySelector('.promo_scroll');
+      const promoDots = document.querySelectorAll('.promo_pagination button');
+      if (promoScroll) {
+        promoDots.forEach((dot, index) => {
+          dot.addEventListener('click', () => {
+            promoScroll.scrollTo({ left: index * promoScroll.clientWidth, behavior: 'smooth' });
+          });
+        });
+        promoScroll.addEventListener('scroll', () => {
+          const currentIndex = Math.round(promoScroll.scrollLeft / promoScroll.clientWidth);
+          promoDots.forEach((dot, index) => dot.classList.toggle('is_current', index === currentIndex));
+        });
+      }
+
+      const snsGrid = document.querySelector('.sns_grid');
+      const snsNextButton = document.getElementById('sns_next_btn');
+      if (snsGrid && snsNextButton) {
+        snsNextButton.addEventListener('click', () => snsGrid.appendChild(snsGrid.firstElementChild));
       }
 
       const rankItems = document.querySelectorAll('.rank_item');
@@ -746,10 +1019,23 @@
       const heroAudience = document.getElementById('hero_audience');
 
       const heroStage = document.querySelector('.hero_stage');
+      const heroBook = document.getElementById('hero_book');
+      const heroInfo = document.querySelector('.hero_info');
+      const HERO_ROTATE_MS = 5000;
+      const shouldReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let activeRankItem = null;
+      let heroRotateTimer = null;
 
       function handleRankItemFocus(item) {
+        if (item === activeRankItem) {
+          return;
+        }
+        activeRankItem = item;
         rankItems.forEach((entry) => entry.classList.remove('is_active'));
         item.classList.add('is_active');
+        if (!shouldReduceMotion) {
+          heroInfo.animate([{ opacity: 0, transform: 'translateY(10px)' }, { opacity: 1, transform: 'none' }], { duration: 600, easing: 'ease-out' });
+        }
 
         heroEyebrow.textContent = `실시간 예매 #${item.dataset.number}`;
         heroTitle.textContent = item.dataset.title;
@@ -759,6 +1045,7 @@
         heroRating.textContent = item.dataset.rating;
         heroPercent.textContent = item.dataset.percent;
         heroAudience.textContent = item.dataset.audience;
+        heroBook.href = `booking.html?movie=${item.dataset.movie}`;
 
         if (item.dataset.bg) {
           heroStage.style.backgroundImage = `url('${item.dataset.bg}')`;
@@ -768,12 +1055,53 @@
         }
       }
 
+      function handleRankItemOpen(item) {
+        if (item.dataset.href) {
+          window.location.href = item.dataset.href;
+        }
+      }
+
       rankItems.forEach((item) => {
         item.addEventListener('mouseenter', () => handleRankItemFocus(item));
         item.addEventListener('focus', () => handleRankItemFocus(item));
+        item.addEventListener('click', () => handleRankItemOpen(item));
+        item.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter') {
+            handleRankItemOpen(item);
+          }
+        });
       });
 
       handleRankItemFocus(document.querySelector('.rank_item.is_active'));
+
+      // 시간이 지나면 TOP5를 순서대로 넘김. 순위 목록·버튼에 마우스나 포커스가 있는 동안은 멈춤
+      function startHeroRotation() {
+        if (shouldReduceMotion || heroRotateTimer) {
+          return;
+        }
+        heroRotateTimer = window.setInterval(() => {
+          const nextIndex = (Array.from(rankItems).indexOf(activeRankItem) + 1) % rankItems.length;
+          handleRankItemFocus(rankItems[nextIndex]);
+        }, HERO_ROTATE_MS);
+      }
+
+      function stopHeroRotation() {
+        window.clearInterval(heroRotateTimer);
+        heroRotateTimer = null;
+      }
+
+      document.querySelectorAll('.hero_top5, .hero_cta').forEach((area) => {
+        area.addEventListener('mouseenter', stopHeroRotation);
+        area.addEventListener('focusin', stopHeroRotation);
+        area.addEventListener('mouseleave', startHeroRotation);
+        area.addEventListener('focusout', startHeroRotation);
+      });
+
+      // 배경 사진을 미리 받아 두어 처음 넘어갈 때 검게 깜빡이지 않게 함
+      rankItems.forEach((item) => {
+        new Image().src = item.dataset.bg;
+      });
+      startHeroRotation();
     </script>
   </body>
 </html>
