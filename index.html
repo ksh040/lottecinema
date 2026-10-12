@@ -776,16 +776,51 @@
             <img src="assets/images/goods/goods_banner.png" alt="미니언즈 & 몬스터즈 나만의 특별한 컬렉션! 미니언즈 영화관 인형 키링" />
           </div>
           <div class="goods_cards">
-            <article class="goods_item">
-              <img src="assets/images/goods/goods_item1.png" alt="굿즈 상품 1" />
+            <article class="goods_item" tabindex="0">
+              <div class="goods_photo"><img src="assets/images/goods/goods_item1.png" alt="" /></div>
+              <div class="goods_stub">
+                <div class="goods_stub_front" aria-hidden="true">
+                  <span>NO. 01</span>
+                  <strong>ADMIT ONE</strong>
+                  <i class="goods_barcode"></i>
+                </div>
+                <div class="goods_stub_back">
+                  <span class="goods_label">NEW</span>
+                  <h3>스파이더맨 키캡 키링</h3>
+                  <p>마블</p>
+                </div>
+              </div>
             </article>
-            <article class="goods_item">
-              <img src="assets/images/goods/goods_item2.png" alt="굿즈 상품 2" />
+            <article class="goods_item" tabindex="0">
+              <div class="goods_photo"><img src="assets/images/goods/goods_item2.png" alt="" /></div>
+              <div class="goods_stub">
+                <div class="goods_stub_front" aria-hidden="true">
+                  <span>NO. 02</span>
+                  <strong>ADMIT ONE</strong>
+                  <i class="goods_barcode"></i>
+                </div>
+                <div class="goods_stub_back">
+                  <span class="goods_label">한정판</span>
+                  <h3>와일드 씽 OST 앨범</h3>
+                  <p>와일드 씽</p>
+                </div>
+              </div>
             </article>
-            <article class="goods_item">
-              <img src="assets/images/goods/goods_item3.png" alt="굿즈 상품 3" />
+            <article class="goods_item" tabindex="0">
+              <div class="goods_photo"><img src="assets/images/goods/goods_item3.png" alt="" /></div>
+              <div class="goods_stub">
+                <div class="goods_stub_front" aria-hidden="true">
+                  <span>NO. 03</span>
+                  <strong>ADMIT ONE</strong>
+                  <i class="goods_barcode"></i>
+                </div>
+                <div class="goods_stub_back">
+                  <span class="goods_label">BEST</span>
+                  <h3>도라에몽 큐브 키링</h3>
+                  <p>도라에몽</p>
+                </div>
+              </div>
             </article>
-            <article class="goods_item goods_item--more">더보기</article>
           </div>
           <div class="goods_footer">
             <div class="goods_footer_text">
@@ -962,6 +997,7 @@
             }
             // 슬라이드 영역이 화면에 다 들어왔을 때만 휠로 전환하고, 그 전후에는 페이지가 평소대로 스크롤됨
             const slideRect = moodScroll.getBoundingClientRect();
+            // 헤더가 화면 위에 붙어 있으므로 헤더 아래부터를 보이는 영역으로 봄
             const isSlideFullyVisible = slideRect.top >= 0 && slideRect.bottom <= window.innerHeight;
             // 화면이 슬라이드보다 낮아 다 들어올 수 없는 경우에는 화면을 가득 채웠을 때 전환
             const isSlideCoveringView = slideRect.height > window.innerHeight && slideRect.top <= 0 && slideRect.bottom >= window.innerHeight;

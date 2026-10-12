@@ -944,3 +944,204 @@
     scroll-behavior: auto;
   }
 }
+
+/* ==========================================================
+   움직임·인터랙션
+   ========================================================== */
+@keyframes movie_hero_in {
+  from {
+    opacity: 0;
+    translate: 0 28px;
+  }
+}
+
+@keyframes movie_neon_flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 1;
+  }
+  44% {
+    opacity: 0.55;
+  }
+  46% {
+    opacity: 1;
+  }
+  48% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes movie_zoom_out {
+  from {
+    scale: 1.18;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 들어올 때 제목 → 포스터 → 소개 순으로 떠오름 */
+  .movie_title_box,
+  .movie_poster,
+  .movie_info {
+    animation: movie_hero_in 0.8s ease-out both;
+  }
+
+  .movie_poster {
+    animation-delay: 0.15s;
+  }
+
+  .movie_info {
+    animation-delay: 0.3s;
+  }
+
+  /* 네온 간판이 가끔 깜빡임 */
+  .movie_neon img,
+  .movie_neon_large img {
+    animation: movie_neon_flicker 6s linear infinite;
+  }
+
+  @supports (animation-timeline: view()) {
+    .movie_cast li,
+    .movie_neon_large,
+    .movie_trailers h2,
+    .movie_trailer,
+    .movie_tagline,
+    .review_stats,
+    .review_summary,
+    .review_write,
+    .review_item {
+      animation: scroll_reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+
+    .movie_cast li:nth-child(2) { animation-range: entry 6% entry 61%; }
+    .movie_cast li:nth-child(3) { animation-range: entry 12% entry 67%; }
+    .movie_cast li:nth-child(4) { animation-range: entry 18% entry 73%; }
+    .movie_cast li:nth-child(5) { animation-range: entry 24% entry 79%; }
+    .movie_cast li:nth-child(6) { animation-range: entry 30% entry 85%; }
+
+    /* 큰 사진은 스크롤에 맞춰 천천히 줌아웃 (영화 장면 같은 느낌) */
+    .movie_trailer_visual img,
+    .movie_stage img,
+    .movie_four img {
+      animation: movie_zoom_out linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 55%;
+    }
+  }
+
+  /* 줌 되는 사진이 영역 밖으로 넘치지 않게 */
+  .movie_trailer_visual,
+  .movie_stage {
+    overflow: hidden;
+  }
+
+  .movie_poster {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .movie_poster:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+  }
+
+  .movie_keyword,
+  .movie_book_btn,
+  .movie_top_btn,
+  .review_write_btn,
+  .review_more_btn,
+  .movie_tab {
+    transition: transform 0.2s ease, filter 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .movie_keyword:hover {
+    transform: translateY(-3px);
+    background: var(--color-main-red);
+    color: var(--color-main-white);
+  }
+
+  .movie_book_btn:hover,
+  .movie_top_btn:hover,
+  .review_write_btn:hover,
+  .review_more_btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.15);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  .movie_tab:not(.is_active):hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  /* 출연진: 올린 사람이 커지고 나머지는 흐려짐 */
+  .movie_cast li {
+    transition: opacity 0.3s ease, scale 0.3s ease;
+  }
+
+  .movie_cast:has(li:hover) li:not(:hover) {
+    opacity: 0.45;
+  }
+
+  .movie_cast li:hover {
+    scale: 1.08;
+  }
+
+  /* 트레일러: 썸네일 확대 + 재생 아이콘 강조 */
+  .movie_trailer_thumb > img:first-child,
+  .movie_trailer_play {
+    transition: transform 0.4s ease, opacity 0.3s ease;
+  }
+
+  .movie_trailer:hover .movie_trailer_thumb > img:first-child {
+    transform: scale(1.1);
+  }
+
+  .movie_trailer:hover .movie_trailer_play {
+    transform: translate(-50%, -50%) scale(1.25);
+  }
+
+  /* 캐릭터 포스터: 올린 장만 또렷하게 */
+  .movie_characters img {
+    transition: filter 0.4s ease, transform 0.4s ease;
+  }
+
+  .movie_characters:has(img:hover) img:not(:hover) {
+    filter: brightness(0.4) saturate(0.6);
+  }
+
+  .movie_characters img:hover {
+    transform: scale(1.04);
+  }
+
+  /* 리뷰: 올린 줄 강조, 공감 버튼 눌림 */
+  .review_item {
+    transition: background 0.25s ease;
+  }
+
+  .review_item:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .review_like img {
+    transition: transform 0.2s ease, filter 0.2s ease;
+  }
+
+  .review_like:hover img {
+    transform: scale(1.2) rotate(-8deg);
+  }
+}
+
+.review_like.is_liked {
+  color: #ff6467;
+  font-weight: 700;
+}
+
+.review_like.is_liked img {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(60%) saturate(3000%) hue-rotate(325deg);
+}

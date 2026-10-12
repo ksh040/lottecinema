@@ -715,6 +715,66 @@ p {
   background-size: 24px;
 }
 
+/* 펼쳐지는 목록을 직접 꾸밈(CSS만으로, 크롬·엣지 135 이상). 지원하지 않는 브라우저에서는 기본 목록이 나옴 */
+@supports (appearance: base-select) {
+  .quick_menu_select select,
+  .quick_menu_select select::picker(select) {
+    appearance: base-select;
+  }
+
+  .quick_menu_select select {
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .quick_menu_select select:hover,
+  .quick_menu_select select:open {
+    background-color: #2e2e2d;
+  }
+
+  /* 화살표는 기존 배경 이미지를 그대로 쓰므로 기본 화살표는 숨김 */
+  .quick_menu_select select::picker-icon,
+  .quick_menu_select option::checkmark {
+    display: none;
+  }
+
+  .quick_menu_select select::picker(select) {
+    margin-block: 10px;
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    background: #232322;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  }
+
+  .quick_menu_select option {
+    padding: 13px 18px;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 17px;
+    cursor: pointer;
+  }
+
+  .quick_menu_select option:hover,
+  .quick_menu_select option:focus-visible {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-main-white);
+    outline: none;
+  }
+
+  .quick_menu_select option:checked {
+    background: rgba(227, 4, 19, 0.22);
+    color: var(--color-main-white);
+  }
+
+  /* 첫 줄("영화 선택" 등)은 안내 문구라 흐리게 */
+  .quick_menu_select option:first-child {
+    background: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 15px;
+  }
+}
+
 .quick_menu_card button {
   width: 213px;
   height: 59px;
@@ -1303,31 +1363,33 @@ p {
   flex-direction: column;
   align-items: center;
   flex-shrink: 0;
-  margin-bottom: 173px;
+  margin-bottom: 198px;
 }
 
 .mood_progress button {
   box-sizing: content-box;
-  width: 4px;
-  height: 12px;
+  width: 2px;
+  height: 10px;
   padding: 0;
   /* 보이는 막대는 그대로 두고 누를 수 있는 영역만 넓힘 */
   border: solid transparent;
   border-width: 5px 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.22);
   background-clip: padding-box;
   cursor: pointer;
+  transition: height 0.4s ease, width 0.4s ease, background 0.4s ease;
 }
 
 .mood_progress button:focus-visible {
   outline: 2px solid var(--color-primary-100);
 }
 
+/* 현재 위치: 가늘고 짧게, 아래로 갈수록 옅어지는 금색 (시안의 6×91px 단색 막대는 너무 튀어 조정) */
 .mood_progress button.is_current {
-  width: 6px;
-  height: 91px;
-  background: var(--color-primary-100);
+  height: 48px;
+  background: linear-gradient(180deg, var(--color-primary-100), rgba(242, 208, 70, 0.25));
+  background-clip: padding-box;
 }
 
 .mood_slide_copy {
@@ -1686,8 +1748,7 @@ p {
 
 .goods_banner,
 .goods_cards {
-  max-width: 1054px;
-  margin: 0 auto 20px;
+  margin-bottom: 20px;
 }
 
 .goods_banner {
@@ -1697,53 +1758,166 @@ p {
 
 .goods_banner img {
   display: block;
-  width: 100%;
-  aspect-ratio: 1054 / 466;
+  /* 원본 이미지 왼쪽에 배경색 여백이 포함되어 있어 그만큼 왼쪽으로 밀어 잘라냄 */
+  width: 103%;
+  max-width: none;
+  margin-left: -3%;
+  aspect-ratio: 1194 / 460;
   object-fit: cover;
-  /* 원본 이미지 왼쪽에 배경색 여백이 포함되어 있어 그쪽을 잘라냄 */
   object-position: right center;
 }
 
+/* 굿즈 카드: 영화 티켓 모양 (사용자 요청으로 시안의 작은 썸네일 4개를 재구성)
+   왼쪽 사진 | 절취선 | 오른쪽 반권. 평소에는 반권에 티켓 문구, 올리면 상품명이 나타남 */
 .goods_cards {
+  --goods-photo: 168px;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 148px));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
 }
 
 .goods_item {
-  aspect-ratio: 1 / 1;
-  border-radius: 16px;
-  border: 1px solid #333;
-  overflow: hidden;
   position: relative;
-}
-
-.goods_item img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.goods_item--more {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #181818;
-  color: rgba(255, 255, 255, 0.4);
-  font-family: var(--font-nanumgothic);
-  font-size: 16px;
+  height: var(--goods-photo);
+  border: none;
+  border-radius: 14px;
+  background: none;
+  box-shadow: none;
+  overflow: hidden;
+  cursor: pointer;
+  /* 절취선 양끝의 반원 홈 */
+  -webkit-mask: radial-gradient(circle 11px at var(--goods-photo) 0, #0000 10.5px, #000 11px) top / 100% 51% no-repeat,
+    radial-gradient(circle 11px at var(--goods-photo) 100%, #0000 10.5px, #000 11px) bottom / 100% 51% no-repeat;
+  mask: radial-gradient(circle 11px at var(--goods-photo) 0, #0000 10.5px, #000 11px) top / 100% 51% no-repeat,
+    radial-gradient(circle 11px at var(--goods-photo) 100%, #0000 10.5px, #000 11px) bottom / 100% 51% no-repeat;
 }
 
+.goods_photo {
+  flex: 0 0 var(--goods-photo);
+  overflow: hidden;
+}
+
+.goods_stub {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  border-left: 2px dashed rgba(0, 0, 0, 0.3);
+  background: #f3efe6;
+  color: #141414;
+  font-family: var(--font-pretendard);
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.goods_stub_front,
+.goods_stub_back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 24px;
+  transition: opacity 0.3s ease, translate 0.3s ease;
+}
+
+.goods_stub_front span {
+  color: rgba(0, 0, 0, 0.45);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.goods_stub_front strong {
+  margin-top: 4px;
+  font-family: var(--font-rixyeoljeongdo);
+  font-size: 26px;
+  line-height: 1.1;
+  letter-spacing: 1px;
+}
+
+.goods_barcode {
+  display: block;
+  width: 120px;
+  max-width: 100%;
+  height: 26px;
+  margin-top: 16px;
+  background: repeating-linear-gradient(90deg, #141414 0 2px, #0000 2px 5px, #141414 5px 6px, #0000 6px 10px, #141414 10px 13px, #0000 13px 15px);
+}
+
+.goods_stub_back {
+  opacity: 0;
+  translate: 0 10px;
+}
+
+.goods_label {
+  align-self: flex-start;
+  padding: 3px 9px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.goods_stub_back h3 {
+  margin-top: 12px;
+  font-family: var(--font-nanumsquare);
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.3;
+  word-break: keep-all;
+}
+
+.goods_stub_back p {
+  margin-top: 6px;
+  font-size: 14px;
+  opacity: 0.75;
+}
+
+.goods_item:hover .goods_stub,
+.goods_item:focus-within .goods_stub,
+.goods_item:focus .goods_stub {
+  border-color: rgba(255, 255, 255, 0.45);
+  background: var(--color-goods-red);
+  color: var(--color-main-white);
+}
+
+.goods_item:hover .goods_stub_front,
+.goods_item:focus .goods_stub_front {
+  opacity: 0;
+  translate: 0 -10px;
+}
+
+.goods_item:hover .goods_stub_back,
+.goods_item:focus .goods_stub_back {
+  opacity: 1;
+  translate: 0;
+}
+
+/* 스토어 안내도 같은 티켓 모양: 오른쪽 버튼 부분이 반권 */
 .goods_footer {
+  --goods-stub: 250px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  flex-wrap: wrap;
-  padding: 32.667px;
-  border-radius: 16px;
-  border: 0.7px solid rgba(255, 255, 255, 0.44);
+  padding: 30px 30px 30px 40px;
+  border-radius: 14px;
+  background: #1f1f1f;
+  -webkit-mask: radial-gradient(circle 11px at calc(100% - var(--goods-stub)) 0, #0000 10.5px, #000 11px) top / 100% 51% no-repeat,
+    radial-gradient(circle 11px at calc(100% - var(--goods-stub)) 100%, #0000 10.5px, #000 11px) bottom / 100% 51% no-repeat;
+  mask: radial-gradient(circle 11px at calc(100% - var(--goods-stub)) 0, #0000 10.5px, #000 11px) top / 100% 51% no-repeat,
+    radial-gradient(circle 11px at calc(100% - var(--goods-stub)) 100%, #0000 10.5px, #000 11px) bottom / 100% 51% no-repeat;
+}
+
+.goods_footer::before {
+  content: '';
+  position: absolute;
+  right: var(--goods-stub);
+  top: 18px;
+  bottom: 18px;
+  border-left: 2px dashed rgba(255, 255, 255, 0.25);
 }
 
 .goods_footer_eyebrow {
@@ -1773,8 +1947,11 @@ p {
 .goods_store_btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 16px 28px;
+  width: 190px;
+  flex-shrink: 0;
+  padding: 16px 0;
   border-radius: 14px;
   background: var(--color-goods-red);
   color: var(--color-main-white);
@@ -1957,24 +2134,53 @@ p {
 
 .site_footer {
   background: linear-gradient(180deg, #141414 23%, #000 100%);
-  padding: clamp(40px, 6.7vw, 129px) 0 41px;
+  padding: clamp(40px, 5vw, 80px) 0 41px;
 }
 
+/* 위: 로고 ↔ SNS·TOP / 구분선 / 아래: 링크, 사업자 정보, 저작권을 왼쪽 한 줄 기준으로 정렬.
+   시안은 세 덩어리를 가로로 띄워 놓았지만 화면 폭에 따라 줄바꿈 위치가 달라져 배치가 흔들림(사용자 요청으로 변경) */
 .footer_layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'logo actions'
+    'links links'
+    'info info'
+    'copy copy';
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
   width: min(100%, var(--page-max-width));
   margin: 0 auto;
-  padding: 0 clamp(20px, 6.25vw, 120px);
-  flex-wrap: wrap;
+  padding: 0 var(--page-padding-x);
 }
 
 .footer_company {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+  display: contents;
+}
+
+.footer_logo {
+  grid-area: logo;
+  justify-self: start;
+}
+
+.footer_actions {
+  grid-area: actions;
+}
+
+.footer_links {
+  grid-area: links;
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer_business_info {
+  grid-area: info;
+  margin-top: 18px;
+}
+
+.footer_copyright {
+  grid-area: copy;
+  margin-top: 14px;
 }
 
 .footer_logo img {
@@ -2002,7 +2208,8 @@ p {
 
 .footer_links {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 8px 24px;
 }
 
 .footer_links a {
@@ -2132,13 +2339,15 @@ p {
   }
 
   .mood_progress button {
-    width: 12px;
-    height: 4px;
+    width: 10px;
+    height: 2px;
   }
 
   .mood_progress button.is_current {
-    width: 91px;
-    height: 6px;
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary-100), rgba(242, 208, 70, 0.25));
+    background-clip: padding-box;
   }
 
   .mood_slide_copy {
@@ -2306,10 +2515,34 @@ p {
     zoom: 0.5;
   }
 
-  .footer_layout {
+  .goods_footer {
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    padding: 24px;
+    -webkit-mask: none;
+    mask: none;
+  }
+
+  .goods_footer::before {
+    display: none;
+  }
+
+  .goods_store_btn {
+    width: 100%;
+  }
+
+  .footer_layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'logo'
+      'links'
+      'info'
+      'copy'
+      'actions';
+  }
+
+  .footer_actions {
+    margin-top: 24px;
   }
 }
 
@@ -2321,5 +2554,172 @@ p {
   .special_card > img,
   .special_detail {
     transition: none;
+  }
+}
+
+/* ==========================================================
+   움직임·인터랙션 (OS에서 '움직임 줄이기'를 켠 경우에는 적용하지 않음)
+   ========================================================== */
+@keyframes scroll_reveal {
+  from {
+    opacity: 0;
+    translate: 0 48px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* 스크롤하면 섹션 제목과 카드가 아래에서 떠오름. JS 없이 CSS 스크롤 타임라인 사용
+     (지원하지 않는 브라우저에서는 그냥 처음부터 보임) */
+  @supports (animation-timeline: view()) {
+    .quick_menu_card,
+    .lotte_pick_title,
+    .poster_card,
+    .mood_header,
+    .promo_eyebrow,
+    .promo_scroll,
+    .special_header,
+    .special_tabs,
+    .special_cards,
+    .goods_header,
+    .goods_banner,
+    .goods_item,
+    .goods_footer,
+    .sns_title,
+    .sns_card,
+    .event_header,
+    .event_item {
+      animation: scroll_reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+
+    /* 옆으로 나란한 카드는 조금씩 늦게 */
+    .poster_card:nth-child(2),
+    .goods_item:nth-child(2),
+    .sns_card:nth-child(2),
+    .event_item:nth-child(2) {
+      animation-range: entry 8% entry 63%;
+    }
+
+    .poster_card:nth-child(3),
+    .goods_item:nth-child(3),
+    .sns_card:nth-child(3),
+    .event_item:nth-child(3) {
+      animation-range: entry 16% entry 71%;
+    }
+
+    .poster_card:nth-child(4),
+    .goods_item:nth-child(4),
+    .sns_card:nth-child(4) {
+      animation-range: entry 24% entry 79%;
+    }
+  }
+
+  /* 버튼: 살짝 떠오르고 밝아짐 */
+  .button_book,
+  .button_trailer,
+  .quick_menu_card button,
+  .promo_btn_book,
+  .promo_btn_details,
+  .goods_store_btn,
+  .special_detail_btn,
+  .poster_detail_buttons > *,
+  .tab_button,
+  #sns_next_btn {
+    transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .button_book:hover,
+  .button_trailer:hover,
+  .quick_menu_card button:hover,
+  .promo_btn_book:hover,
+  .promo_btn_details:hover,
+  .goods_store_btn:hover,
+  .special_detail_btn:hover,
+  .poster_detail_buttons > *:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.15);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  .button_book:active,
+  .button_trailer:active,
+  .quick_menu_card button:active,
+  .promo_btn_book:active,
+  .promo_btn_details:active,
+  .goods_store_btn:active {
+    transform: translateY(0) scale(0.97);
+  }
+
+  #sns_next_btn:hover {
+    transform: scale(1.15);
+  }
+
+  .tab_button:not(.is_active):hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* TOP5: 올린 항목이 살짝 앞으로 나오고 포스터가 커짐 */
+  .rank_item,
+  .rank_poster,
+  .rank_number {
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+
+  .rank_item:hover {
+    transform: translateX(-8px);
+  }
+
+  .rank_item:hover .rank_poster {
+    transform: scale(1.06);
+  }
+
+  .rank_item.is_active .rank_number {
+    transform: scale(1.2);
+  }
+
+  /* 굿즈·SNS: 사진이 천천히 확대 */
+  .goods_banner img,
+  .goods_item img,
+  .sns_visual {
+    transition: transform 0.6s ease;
+  }
+
+  .goods_banner:hover img {
+    transform: scale(1.04);
+  }
+
+  .goods_item:hover img,
+  .sns_card:hover .sns_visual {
+    transform: scale(1.08);
+  }
+
+  .goods_item {
+    transition: translate 0.3s ease;
+  }
+
+  .goods_item:hover {
+    translate: 0 -6px;
+  }
+
+  /* 이벤트 목록: 올린 줄이 밝아지며 오른쪽으로 살짝 */
+  .event_item {
+    transition: background 0.25s ease, padding-left 0.25s ease;
+    cursor: pointer;
+  }
+
+  .event_item:hover {
+    padding-left: 36px;
+    background: linear-gradient(90deg, rgba(227, 4, 19, 0.16), rgba(227, 4, 19, 0));
+  }
+
+  .event_title,
+  .event_index {
+    transition: color 0.25s ease;
+  }
+
+  .event_item:hover .event_title,
+  .event_item:hover .event_index {
+    color: var(--color-main-white);
   }
 }

@@ -335,6 +335,19 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
+      // 공감 버튼: 누르면 숫자가 1 올라가고, 다시 누르면 취소
+      document.querySelectorAll('.review_like').forEach((button) => {
+        button.addEventListener('click', () => {
+          const item = button.closest('.review_item');
+          const isLiked = button.classList.toggle('is_liked');
+          const likes = Number(item.dataset.likes) + (isLiked ? 1 : -1);
+          item.dataset.likes = likes;
+          button.lastChild.textContent = likes;
+          button.setAttribute('aria-label', `공감 ${likes}`);
+          button.setAttribute('aria-pressed', String(isLiked));
+        });
+      });
+
       const reviewList = document.getElementById('review_list');
       const sortButtons = document.querySelectorAll('.review_sort button');
 

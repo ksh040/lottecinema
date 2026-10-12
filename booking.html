@@ -130,27 +130,29 @@
 
         <!-- 좌석 선택 -->
         <section class="booking_step" data-step="seat" aria-labelledby="seat_step_title">
-          <div class="booking_people">
-            <div class="booking_people_head">
+          <div class="booking_seat_layout">
+            <div class="booking_seat_panel">
+              <div class="booking_screen" aria-hidden="true"><span>SCREEN</span></div>
+              <div class="booking_seats" id="booking_seats" role="group" aria-label="좌석"></div>
+              <ul class="booking_legend" aria-label="좌석 안내">
+                <li><span class="booking_legend_seat is_available"></span>선택 가능</li>
+                <li><span class="booking_legend_seat is_selected"></span>선택</li>
+                <li><span class="booking_legend_seat"></span>예매 완료</li>
+                <li><span class="booking_legend_seat is_blocked"></span>선택 불가</li>
+              </ul>
+            </div>
+            <aside class="booking_seat_side">
               <h2 id="seat_step_title">인원 선택</h2>
-              <p>·인원은 최대 8명까지 선택 가능합니다.</p>
-            </div>
-            <div class="booking_counters" id="booking_counters"></div>
-          </div>
-          <p class="booking_screen" aria-hidden="true">SCREEN</p>
-          <div class="booking_seats" id="booking_seats" role="group" aria-label="좌석"></div>
-          <ul class="booking_legend" aria-label="좌석 안내">
-            <li><img src="assets/images/booking/seat_selected.png" alt="" />선택</li>
-            <li><img src="assets/images/booking/seat_booked.png" alt="" />예매 완료</li>
-            <li><span class="booking_legend_blocked"></span>선택 불가</li>
-          </ul>
-          <p class="booking_hint" id="booking_seat_hint" role="status"></p>
-          <div class="booking_total">
-            <div>
-              <p class="booking_total_seats">선택한 좌석 <strong id="booking_total_seats"></strong></p>
-              <p class="booking_total_price">총 합계 <strong id="booking_total_price">0원</strong></p>
-            </div>
-            <button type="button" class="booking_pay_btn" id="booking_seat_done" disabled>결제하기</button>
+              <p class="booking_people_note">인원은 최대 8명까지 선택 가능합니다.</p>
+              <div class="booking_counters" id="booking_counters"></div>
+              <div class="booking_total">
+                <p class="booking_total_label">선택한 좌석</p>
+                <p class="booking_total_seats" id="booking_total_seats"></p>
+                <p class="booking_hint" id="booking_seat_hint" role="status"></p>
+                <p class="booking_total_price">총 합계 <strong id="booking_total_price">0원</strong></p>
+                <button type="button" class="booking_pay_btn" id="booking_seat_done" disabled>결제하기</button>
+              </div>
+            </aside>
           </div>
         </section>
 
@@ -158,36 +160,51 @@
         <section class="booking_step" data-step="pay" aria-label="결제">
           <div class="booking_pay">
             <div class="booking_info">
-              <h2>예매정보</h2>
-              <img class="booking_info_poster" id="booking_info_poster" alt="" />
-              <p class="booking_info_title" id="booking_info_title"></p>
+              <div class="booking_info_head">
+                <img class="booking_info_poster" id="booking_info_poster" alt="" />
+                <div>
+                  <p class="booking_info_label">예매정보</p>
+                  <h2 class="booking_info_title" id="booking_info_title"></h2>
+                </div>
+              </div>
               <dl class="booking_info_list" id="booking_info_list"></dl>
             </div>
-            <div class="booking_pay_box">
-              <h2>할인/포인트</h2>
-              <div class="booking_pay_options" id="booking_discounts">
-                <button type="button" aria-pressed="false">L.POINT 조회</button>
-                <button type="button" aria-pressed="false">관람권</button>
-                <button type="button" aria-pressed="false">할인원</button>
-                <button type="button" aria-pressed="false">제휴 포인트/할인</button>
+
+            <div class="booking_pay_side">
+              <div class="booking_pay_box">
+                <h2>할인/포인트</h2>
+                <div class="booking_pay_options" id="booking_discounts">
+                  <button type="button" aria-pressed="false">L.POINT 조회</button>
+                  <button type="button" aria-pressed="false">관람권</button>
+                  <button type="button" aria-pressed="false">할인원</button>
+                  <button type="button" aria-pressed="false">제휴 포인트/할인</button>
+                </div>
               </div>
-            </div>
-            <div class="booking_pay_box">
-              <h2>최종 결제수단</h2>
-              <div class="booking_pay_options" id="booking_methods">
-                <button type="button" aria-pressed="false">신용/체크카드</button>
-                <button type="button" aria-pressed="false">간편결제</button>
-                <button type="button" aria-pressed="false">휴대폰</button>
-                <button type="button" aria-pressed="false">무통장입금</button>
+              <div class="booking_pay_box">
+                <h2>최종 결제수단</h2>
+                <div class="booking_pay_options booking_pay_options--radio" id="booking_methods">
+                  <button type="button" aria-pressed="false">신용/체크카드</button>
+                  <button type="button" aria-pressed="false">간편결제</button>
+                  <button type="button" aria-pressed="false">휴대폰</button>
+                  <button type="button" aria-pressed="false">무통장입금</button>
+                </div>
               </div>
-            </div>
-            <div class="booking_pay_total">
-              <span>총 금액</span>
-              <strong id="booking_pay_price"></strong>
-              <button type="button" class="booking_pay_btn" id="booking_pay_done">결제하기</button>
+              <div class="booking_pay_summary">
+                <dl>
+                  <dt>티켓 금액</dt>
+                  <dd id="booking_pay_ticket"></dd>
+                  <dt>할인 금액</dt>
+                  <dd>0원</dd>
+                </dl>
+                <div class="booking_pay_total">
+                  <span>총 금액</span>
+                  <strong id="booking_pay_price"></strong>
+                </div>
+                <p class="booking_hint" id="booking_pay_hint" role="status"></p>
+                <button type="button" class="booking_pay_btn" id="booking_pay_done">결제하기</button>
+              </div>
             </div>
           </div>
-          <p class="booking_hint" id="booking_pay_hint" role="status"></p>
         </section>
 
         <!-- 예매 완료 -->
@@ -269,6 +286,8 @@
       const BOOKED_SEATS = ['D5', 'D6'];
       const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
       const FIT_MIN_WIDTH = 1024;
+      // 가장 긴 단계(상영 시간표)의 높이. 모든 단계를 이 높이 기준으로 같은 비율로 축소
+      const FIT_HEIGHT = 870;
 
       const state = {
         mode: 'movie',
@@ -462,7 +481,9 @@
               .map(([time, remaining]) => {
                 const isSelected = Boolean(state.show) && state.show.group === group && state.show.time === time;
                 return `<li><button type="button" class="booking_showtime ${isSelected ? 'is_selected' : ''}" data-group="${groupIndex}" data-time="${time}" aria-pressed="${isSelected}">
-                  <strong>${time}</strong><span><em>${remaining}</em>/${group.total}</span><span>${group.hall}</span></button></li>`;
+                  <strong>${time}</strong><small>~${getEndTime(time)}</small>
+                  <span class="booking_showtime_hall">${group.hall}</span><span class="booking_showtime_seats"><em>${remaining}</em>/${group.total}석</span>
+                  <span class="booking_showtime_bar" aria-hidden="true"><span style="width: ${Math.round((remaining / group.total) * 100)}%"></span></span></button></li>`;
               })
               .join('');
             return `<div><p class="booking_showtime_label">${group.label.join('<i>|</i>')}</p>${group.desc ? `<p class="booking_showtime_desc">${group.desc}</p>` : ''}
@@ -477,7 +498,7 @@
       function renderSeats() {
         const people = getPeopleCount();
         byId('booking_counters').innerHTML = PEOPLE.map(
-          ([key, label]) => `<div>${label}<div class="booking_counter_box">
+          ([key, label]) => `<div class="booking_counter"><span>${label}</span><div class="booking_counter_box">
             <button type="button" data-count="${key}" data-delta="-1" aria-label="${label} 줄이기" ${state.counts[key] === 0 ? 'disabled' : ''}>−</button>
             <span aria-live="polite">${state.counts[key]}</span>
             <button type="button" data-count="${key}" data-delta="1" aria-label="${label} 늘리기" ${people >= MAX_PEOPLE ? 'disabled' : ''}>+</button></div></div>`
@@ -498,7 +519,7 @@
           return `<div class="booking_seat_row"><span>${row}</span>${seats}</div>`;
         }).join('');
 
-        byId('booking_total_seats').textContent = state.seats.join(', ');
+        byId('booking_total_seats').innerHTML = state.seats.map((seat) => `<span>${seat}</span>`).join('') || '<em>아직 선택한 좌석이 없습니다</em>';
         byId('booking_total_price').textContent = formatPrice(state.seats.length * SEAT_PRICE);
         byId('booking_seat_done').disabled = people === 0 || state.seats.length !== people;
         byId('booking_seat_hint').textContent =
@@ -526,6 +547,7 @@
         byId('booking_info_poster').alt = `${movie.title} 포스터`;
         byId('booking_info_title').innerHTML = `${getAgeIcon(movie)}<span>${movie.title}(2D)</span>`;
         byId('booking_info_list').innerHTML = getInfoRows();
+        byId('booking_pay_ticket').textContent = `${formatPrice(SEAT_PRICE)} × ${state.seats.length}`;
         byId('booking_pay_price').textContent = formatPrice(state.seats.length * SEAT_PRICE);
         byId('booking_methods').querySelectorAll('button').forEach((button) => {
           const isSelected = button.textContent === state.method;
@@ -568,7 +590,8 @@
         handleScreenFit();
       }
 
-      // 데스크톱에서는 스크롤 없이 한 화면에 들어오도록, 내용이 화면보다 길면 그만큼 축소
+      // 데스크톱에서는 스크롤 없이 한 화면에 들어오도록 축소.
+      // 단계마다 크기가 달라지지 않게 FIT_HEIGHT 기준으로 같은 비율을 쓰고, 그보다 긴 단계만 더 줄임
       function handleScreenFit() {
         const page = byId('booking_page');
         const inner = page.querySelector('.booking_inner');
@@ -578,7 +601,7 @@
         }
         const style = window.getComputedStyle(page);
         const available = page.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
-        inner.style.zoom = Math.min(1, available / inner.offsetHeight);
+        inner.style.zoom = Math.min(1, available / Math.max(FIT_HEIGHT, inner.offsetHeight));
       }
 
       // ---------- 이벤트 (목록은 다시 그려지므로 상위 요소에서 한 번만 받음) ----------
